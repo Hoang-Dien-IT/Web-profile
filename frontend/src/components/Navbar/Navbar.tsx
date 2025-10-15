@@ -82,7 +82,7 @@ const Navbar: React.FC = () => {
               onClick={() => scrollToSection('#home')}
               className="flex items-center space-x-2 text-2xl font-bold gradient-text cursor-pointer"
             >
-              <div className="w-10 h-10 bg-gradient-to-r from-primary-500 to-purple-500 rounded-lg flex items-center justify-center">
+              <div className="w-10 h-10 bg-gradient-to-r from-primary-500 to-primary-600 rounded-lg flex items-center justify-center">
                 <span className="text-white font-black">P</span>
               </div>
               <span className="hidden sm:block">Portfolio</span>
@@ -135,7 +135,7 @@ const Navbar: React.FC = () => {
             >
               <button
                 onClick={() => scrollToSection('#contact')}
-                className="bg-gradient-to-r from-primary-500 to-purple-500 text-white px-6 py-2 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:from-primary-600 hover:to-purple-600"
+                className="bg-gradient-to-r from-primary-500 to-primary-600 text-white px-6 py-2 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:from-primary-600 hover:to-primary-700"
               >
                 Let's Talk
               </button>
@@ -210,7 +210,7 @@ const Navbar: React.FC = () => {
               >
                 <button
                   onClick={() => scrollToSection('#contact')}
-                  className="block w-full text-center bg-gradient-to-r from-primary-500 to-purple-500 text-white px-4 py-3 rounded-lg font-semibold shadow-lg"
+                  className="block w-full text-center bg-gradient-to-r from-primary-500 to-primary-600 text-white px-4 py-3 rounded-lg font-semibold shadow-lg"
                 >
                   Let's Talk
                 </button>

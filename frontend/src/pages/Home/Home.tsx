@@ -72,7 +72,7 @@ const Home: React.FC = () => {
         {[...Array(5)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-20 h-20 bg-gradient-to-r from-primary-500/20 to-purple-500/20 rounded-full blur-xl"
+            className="absolute w-20 h-20 bg-gradient-to-r from-primary-500/20 to-secondary-500/20 rounded-full blur-xl"
             animate={{
               x: [0, 100, 0],
               y: [0, -100, 0],
@@ -92,7 +92,7 @@ const Home: React.FC = () => {
 
         {/* Mouse follower effect */}
         <motion.div
-          className="absolute w-96 h-96 bg-gradient-radial from-primary-500/10 via-purple-500/5 to-transparent rounded-full blur-3xl pointer-events-none"
+          className="absolute w-96 h-96 bg-gradient-radial from-primary-500/10 via-secondary-500/5 to-transparent rounded-full blur-3xl pointer-events-none"
           animate={{
             x: mousePosition.x - 192,
             y: mousePosition.y - 192,
@@ -158,7 +158,7 @@ const Home: React.FC = () => {
                 const element = document.getElementById('projects');
                 element?.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary-500 to-purple-500 text-white font-semibold rounded-full shadow-2xl transition-all duration-300 group"
+              className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary-500 to-primary-600 text-white font-semibold rounded-full shadow-2xl transition-all duration-300 group"
             >
               View My Work
               <motion.svg
@@ -183,7 +183,7 @@ const Home: React.FC = () => {
                 const element = document.getElementById('contact');
                 element?.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="inline-flex items-center px-8 py-4 border-2 border-gray-600 text-gray-300 font-semibold rounded-full hover:border-primary-500 hover:text-primary-500 transition-all duration-300 backdrop-blur-sm bg-white/5"
+              className="inline-flex items-center px-8 py-4 border-2 border-secondary-500 text-secondary-400 font-semibold rounded-full hover:border-secondary-400 hover:text-secondary-300 transition-all duration-300 backdrop-blur-sm bg-white/5"
             >
               Get In Touch
               <motion.svg
