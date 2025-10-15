@@ -24,19 +24,34 @@ const Contact: React.FC = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate API call
-    setTimeout(() => {
-      setIsSubmitting(false);
-      alert('Message sent successfully!');
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: '',
-        projectType: 'web-development',
-        budget: 'not-specified'
+    try {
+      const response = await fetch('http://127.0.0.1:5000/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       });
-    }, 2000);
+      
+      if (response.ok) {
+        alert('Message sent successfully!');
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: '',
+          projectType: 'web-development',
+          budget: 'not-specified'
+        });
+      } else {
+        const error = await response.json();
+        alert(`Error: ${error.error?.message || 'Failed to send message'}`);
+      }
+    } catch (error: any) {
+      alert(`Error: ${error.message || 'Failed to send message'}`);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactInfo = [

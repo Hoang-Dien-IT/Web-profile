@@ -1,42 +1,62 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface NavItem {
   name: string;
-  path: string;
+  href: string;
   icon?: string;
 }
 
 const navItems: NavItem[] = [
-  { name: 'Home', path: '/' },
-  { name: 'About', path: '/about' },
-  { name: 'Projects', path: '/projects' },
-  { name: 'Skills', path: '/skills' },
-  { name: 'Experience', path: '/experience' },
-  { name: 'Contact', path: '/contact' },
+  { name: 'Home', href: '#home' },
+  { name: 'About', href: '#about' },
+  { name: 'Skills', href: '#skills' },
+  { name: 'Experience', href: '#experience' },
+  { name: 'Projects', href: '#projects' },
+  { name: 'Contact', href: '#contact' },
 ];
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const location = useLocation();
+  const [activeSection, setActiveSection] = useState('home');
 
-  // Handle scroll effect
+  // Handle scroll effect and active section detection
   useEffect(() => {
     const handleScroll = () => {
       const offset = window.scrollY;
       setScrolled(offset > 50);
+
+      // Detect active section
+      const sections = ['home', 'about', 'skills', 'experience', 'projects', 'contact'];
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          if (rect.top <= 100 && rect.bottom >= 100) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile menu when route changes
-  useEffect(() => {
+  // Smooth scroll to section
+  const scrollToSection = (href: string) => {
+    const targetId = href.replace('#', '');
+    const element = document.getElementById(targetId);
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    }
     setIsOpen(false);
-  }, [location]);
+  };
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
@@ -58,15 +78,15 @@ const Navbar: React.FC = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <Link
-              to="/"
-              className="flex items-center space-x-2 text-2xl font-bold gradient-text"
+            <button
+              onClick={() => scrollToSection('#home')}
+              className="flex items-center space-x-2 text-2xl font-bold gradient-text cursor-pointer"
             >
               <div className="w-10 h-10 bg-gradient-to-r from-primary-500 to-purple-500 rounded-lg flex items-center justify-center">
                 <span className="text-white font-black">P</span>
               </div>
               <span className="hidden sm:block">Portfolio</span>
-            </Link>
+            </button>
           </motion.div>
 
           {/* Desktop Menu */}
@@ -79,10 +99,10 @@ const Navbar: React.FC = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <Link
-                    to={item.path}
+                  <button
+                    onClick={() => scrollToSection(item.href)}
                     className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 relative group ${
-                      location.pathname === item.path
+                      activeSection === item.href.replace('#', '')
                         ? 'text-primary-400'
                         : 'text-gray-300 hover:text-white'
                     }`}
@@ -90,7 +110,7 @@ const Navbar: React.FC = () => {
                     {item.name}
                     
                     {/* Active indicator */}
-                    {location.pathname === item.path && (
+                    {activeSection === item.href.replace('#', '') && (
                       <motion.div
                         layoutId="activeTab"
                         className="absolute inset-0 bg-primary-500/20 rounded-lg"
@@ -101,7 +121,7 @@ const Navbar: React.FC = () => {
                     
                     {/* Hover effect */}
                     <div className="absolute inset-0 bg-white/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  </Link>
+                  </button>
                 </motion.div>
               ))}
             </div>
@@ -113,12 +133,12 @@ const Navbar: React.FC = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Link
-                to="/contact"
+              <button
+                onClick={() => scrollToSection('#contact')}
                 className="bg-gradient-to-r from-primary-500 to-purple-500 text-white px-6 py-2 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:from-primary-600 hover:to-purple-600"
               >
                 Let's Talk
-              </Link>
+              </button>
             </motion.div>
           </div>
 
@@ -168,16 +188,16 @@ const Navbar: React.FC = () => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.3, delay: index * 0.05 }}
                 >
-                  <Link
-                    to={item.path}
-                    className={`block px-3 py-2 rounded-md text-base font-medium transition-all duration-300 ${
-                      location.pathname === item.path
+                  <button
+                    onClick={() => scrollToSection(item.href)}
+                    className={`block w-full text-left px-3 py-2 rounded-md text-base font-medium transition-all duration-300 ${
+                      activeSection === item.href.replace('#', '')
                         ? 'text-primary-400 bg-primary-500/20'
                         : 'text-gray-300 hover:text-white hover:bg-gray-700'
                     }`}
                   >
                     {item.name}
-                  </Link>
+                  </button>
                 </motion.div>
               ))}
               
@@ -188,12 +208,12 @@ const Navbar: React.FC = () => {
                 transition={{ duration: 0.3, delay: navItems.length * 0.05 }}
                 className="pt-4"
               >
-                <Link
-                  to="/contact"
+                <button
+                  onClick={() => scrollToSection('#contact')}
                   className="block w-full text-center bg-gradient-to-r from-primary-500 to-purple-500 text-white px-4 py-3 rounded-lg font-semibold shadow-lg"
                 >
                   Let's Talk
-                </Link>
+                </button>
               </motion.div>
             </div>
           </motion.div>
