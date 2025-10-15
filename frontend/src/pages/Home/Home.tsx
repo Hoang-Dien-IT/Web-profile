@@ -21,10 +21,10 @@ const Home: React.FC = () => {
   useEffect(() => {
     const typingTexts = [
       "Full Stack Developer",
-      "UI/UX Designer", 
-      "React Specialist",
-      "Mobile App Developer",
-      "Problem Solver"
+      "AI Engineer", 
+      "Data Scientist",
+      "Deep Learning Enthusiast",
+      "Backend Developer"
     ];
     
     const currentText = typingTexts[currentIndex];
@@ -119,7 +119,7 @@ const Home: React.FC = () => {
             <motion.span 
               className="block gradient-text"
             >
-              Your Name
+              Nguyen Hoang Dien
             </motion.span>
           </motion.h1>
         </motion.div>
@@ -205,26 +205,27 @@ const Home: React.FC = () => {
           className="flex justify-center space-x-6 mt-12"
         >
           {[
-            { name: 'GitHub', icon: '📱', href: 'https://github.com' },
-            { name: 'LinkedIn', icon: '💼', href: 'https://linkedin.com' },
-            { name: 'Twitter', icon: '🐦', href: 'https://twitter.com' },
-            { name: 'Email', icon: '📧', href: 'mailto:your@email.com' },
+            { name: 'GitHub', iconClass: 'fa-brands fa-github', color: '#ffffff', href: 'https://github.com/Hoang-Dien-IT' },
+            { name: 'LinkedIn', iconClass: 'fa-brands fa-linkedin', color: '#0077B5', href: 'https://www.linkedin.com/in/nguy%E1%BB%85n-ho%C3%A0ng-%C4%91i%E1%BB%83n-215444334/' },
+            { name: 'Facebook', iconClass: 'fa-brands fa-facebook', color: '#1DA1F2', href: 'https://www.facebook.com/hoang.ien.428831/' },
+            { name: 'Email', iconClass: 'fa-solid fa-envelope', color: '#ea4335', href: 'mailto:nguyenhoangdien1x@gmail.com' },
           ].map((social, index) => (
             <motion.a
               key={social.name}
               href={social.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-12 h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-xl hover:bg-primary-500/20 transition-all duration-300 group"
+              className="w-12 h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-lg hover:bg-primary-500/20 transition-all duration-300 group"
               whileHover={{ scale: 1.2, rotate: 360 }}
               whileTap={{ scale: 0.9 }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1 + index * 0.1 }}
             >
-              <span className="group-hover:scale-110 transition-transform duration-300">
-                {social.icon}
-              </span>
+              <i 
+                className={`${social.iconClass} group-hover:scale-110 transition-transform duration-300`}
+                style={{ color: social.color }}
+              />
             </motion.a>
           ))}
         </motion.div>
@@ -237,7 +238,7 @@ const Home: React.FC = () => {
         >
           <div className="w-6 h-10 border-2 border-gray-600 rounded-full flex justify-center">
             <motion.div
-              className="w-1 h-3 bg-gradient-to-b from-primary-500 to-purple-500 rounded-full mt-2"
+              className="w-1 h-3 bg-gradient-to-b from-primary-500 to-secondary-500 rounded-full mt-2"
               animate={{ y: [0, 12, 0] }}
               transition={{ duration: 2, repeat: Infinity }}
             />
