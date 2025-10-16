@@ -6,12 +6,30 @@ const { uploadToCloudinary, deleteFromCloudinary } = require('../utils/cloudinar
 // @access  Public
 const getProfile = async (req, res, next) => {
   try {
-    const profile = await Profile.findOne({ isActive: true });
+    // First try to find an active profile, then any profile, then create default
+    let profile = await Profile.findOne({ isActive: true });
     
     if (!profile) {
-      return res.status(404).json({
-        success: false,
-        error: { message: 'Profile not found' }
+      // Try to find any profile
+      profile = await Profile.findOne();
+    }
+    
+    if (!profile) {
+      // Create a default profile if none exists
+      profile = await Profile.create({
+        fullName: 'Your Name',
+        title: 'Full Stack Developer',
+        bio: 'Passionate developer creating amazing digital experiences.',
+        location: 'Your Location',
+        email: 'your@email.com',
+        availability: true,
+        isActive: true,
+        socialLinks: {
+          github: 'https://github.com/yourusername',
+          linkedin: 'https://linkedin.com/in/yourusername',
+        },
+        skills: ['JavaScript', 'React', 'Node.js', 'TypeScript'],
+        interests: ['Technology', 'Innovation', 'Problem Solving']
       });
     }
 

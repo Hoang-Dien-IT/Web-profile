@@ -1,12 +1,7 @@
 const mongoose = require('mongoose');
 
 const profileSchema = new mongoose.Schema({
-  firstName: {
-    type: String,
-    required: true,
-    trim: true
-  },
-  lastName: {
+  fullName: {
     type: String,
     required: true,
     trim: true
@@ -32,8 +27,24 @@ const profileSchema = new mongoose.Schema({
     trim: true
   },
   location: {
-    city: String,
-    country: String
+    type: String,
+    trim: true
+  },
+  website: {
+    type: String,
+    trim: true
+  },
+  skills: [{
+    type: String,
+    trim: true
+  }],
+  interests: [{
+    type: String,
+    trim: true
+  }],
+  availability: {
+    type: Boolean,
+    default: true
   },
   avatar: {
     type: String,
