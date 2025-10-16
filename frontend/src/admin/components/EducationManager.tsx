@@ -188,9 +188,9 @@ const EducationManager: React.FC = () => {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="text-center">
+          <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-500 mx-auto mb-4"></div>
-          <p className="text-gray-400">Loading education...</p>
+          <p className="text-gray-400">Đang tải học vấn...</p>
         </div>
       </div>
     );
@@ -207,14 +207,14 @@ const EducationManager: React.FC = () => {
       {/* Header */}
       <div className="flex justify-between items-center">
         <div>
-          <h3 className="text-2xl font-bold text-white">Education ({education?.length || 0})</h3>
-          <p className="text-gray-400">Manage your educational background</p>
+          <h3 className="text-2xl font-bold text-white">Học vấn ({education?.length || 0})</h3>
+          <p className="text-gray-400">Quản lý nền tảng học vấn</p>
         </div>
-        <button
+          <button
           onClick={() => openModal()}
           className="px-4 py-2 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors"
         >
-          Add New Education
+          Thêm học vấn
         </button>
       </div>
 
@@ -233,7 +233,7 @@ const EducationManager: React.FC = () => {
                   <h4 className="text-xl font-semibold text-white">{edu.degree}</h4>
                   {edu.current && (
                     <span className="bg-success-500/20 text-success-300 px-2 py-1 rounded text-xs">
-                      Current
+                      Hiện tại
                     </span>
                   )}
                   <span className="bg-primary-500/20 text-primary-300 px-2 py-1 rounded text-xs capitalize">
@@ -251,8 +251,8 @@ const EducationManager: React.FC = () => {
                 
                 <p className="text-gray-500 text-sm mb-3">
                   {formatDate(edu.startDate)} - {
-                    edu.current ? 'Present' : 
-                    edu.endDate ? formatDate(edu.endDate) : 'Present'
+                    edu.current ? 'Hiện tại' : 
+                    edu.endDate ? formatDate(edu.endDate) : 'Hiện tại'
                   }
                   {edu.gpa && <span className="ml-4">GPA: {edu.gpa}</span>}
                 </p>
@@ -264,7 +264,7 @@ const EducationManager: React.FC = () => {
                 {/* Relevant Courses */}
                 {edu.relevantCourses && edu.relevantCourses.length > 0 && (
                   <div className="mb-4">
-                    <h5 className="text-sm font-medium text-gray-400 mb-2">Relevant Courses:</h5>
+                    <h5 className="text-sm font-medium text-gray-400 mb-2">Khóa học liên quan:</h5>
                     <div className="flex flex-wrap gap-2">
                       {edu.relevantCourses.slice(0, 6).map((course: string) => (
                         <span key={course} className="bg-secondary-500/20 text-secondary-300 px-2 py-1 rounded text-xs">
@@ -283,7 +283,7 @@ const EducationManager: React.FC = () => {
                 {/* Achievements */}
                 {edu.achievements && edu.achievements.length > 0 && (
                   <div className="mb-4">
-                    <h5 className="text-sm font-medium text-gray-400 mb-2">Achievements:</h5>
+                    <h5 className="text-sm font-medium text-gray-400 mb-2">Thành tích:</h5>
                     <ul className="text-gray-300 text-sm space-y-1">
                       {edu.achievements.slice(0, 3).map((achievement: string, index: number) => (
                         <li key={index} className="flex items-start">
@@ -317,13 +317,13 @@ const EducationManager: React.FC = () => {
         {(!education || education.length === 0) && (
           <div className="text-center py-12">
             <div className="text-6xl mb-4">🎓</div>
-            <h3 className="text-xl font-semibold text-gray-400 mb-2">No Education Added</h3>
-            <p className="text-gray-500 mb-6">Start by adding your educational background</p>
+            <h3 className="text-xl font-semibold text-gray-400 mb-2">Chưa có học vấn</h3>
+            <p className="text-gray-500 mb-6">Bắt đầu bằng cách thêm thông tin học vấn</p>
             <button
               onClick={() => openModal()}
               className="px-6 py-3 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors"
             >
-              Add First Education
+              Thêm học vấn đầu tiên
             </button>
           </div>
         )}
@@ -346,7 +346,7 @@ const EducationManager: React.FC = () => {
             >
               <div className="flex justify-between items-center mb-6">
                 <h3 className="text-2xl font-bold text-white">
-                  {editingEducation ? 'Edit Education' : 'Add New Education'}
+                  {editingEducation ? 'Chỉnh sửa học vấn' : 'Thêm học vấn mới'}
                 </h3>
                 <button
                   onClick={closeModal}
@@ -361,7 +361,7 @@ const EducationManager: React.FC = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-300 mb-2">
-                      Institution *
+                      Cơ sở đào tạo *
                     </label>
                     <input
                       type="text"
@@ -376,7 +376,7 @@ const EducationManager: React.FC = () => {
 
                   <div>
                     <label className="block text-sm font-medium text-gray-300 mb-2">
-                      Degree *
+                      Bằng cấp *
                     </label>
                     <input
                       type="text"
@@ -391,7 +391,7 @@ const EducationManager: React.FC = () => {
 
                   <div>
                     <label className="block text-sm font-medium text-gray-300 mb-2">
-                      Field of Study
+                      Chuyên ngành
                     </label>
                     <input
                       type="text"
@@ -405,7 +405,7 @@ const EducationManager: React.FC = () => {
 
                   <div>
                     <label className="block text-sm font-medium text-gray-300 mb-2">
-                      Degree Type
+                      Loại bằng
                     </label>
                     <select
                       name="degreeType"
@@ -423,7 +423,7 @@ const EducationManager: React.FC = () => {
 
                   <div>
                     <label className="block text-sm font-medium text-gray-300 mb-2">
-                      Location
+                      Địa điểm
                     </label>
                     <input
                       type="text"
@@ -437,7 +437,7 @@ const EducationManager: React.FC = () => {
 
                   <div>
                     <label className="block text-sm font-medium text-gray-300 mb-2">
-                      GPA/Grade
+                      Điểm/GPA
                     </label>
                     <input
                       type="text"
@@ -451,7 +451,7 @@ const EducationManager: React.FC = () => {
 
                   <div>
                     <label className="block text-sm font-medium text-gray-300 mb-2">
-                      Start Date *
+                      Ngày bắt đầu *
                     </label>
                     <input
                       type="date"
@@ -465,7 +465,7 @@ const EducationManager: React.FC = () => {
 
                   <div>
                     <label className="block text-sm font-medium text-gray-300 mb-2">
-                      End Date
+                      Ngày kết thúc
                     </label>
                     <input
                       type="date"
@@ -488,14 +488,14 @@ const EducationManager: React.FC = () => {
                       onChange={handleInputChange}
                       className="mr-2"
                     />
-                    <span className="text-gray-300">I'm currently studying here</span>
+                    <span className="text-gray-300">Tôi đang học tại đây</span>
                   </label>
                 </div>
 
                 {/* Description */}
                 <div>
                   <label className="block text-sm font-medium text-gray-300 mb-2">
-                    Description
+                    Mô tả
                   </label>
                   <textarea
                     name="description"
@@ -503,14 +503,14 @@ const EducationManager: React.FC = () => {
                     onChange={handleInputChange}
                     rows={3}
                     className="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:border-primary-500 focus:outline-none resize-none"
-                    placeholder="Describe your studies, thesis, special programs..."
+                    placeholder="Mô tả học tập, luận văn, chương trình đặc biệt..."
                   />
                 </div>
 
                 {/* Relevant Courses */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
-                    Relevant Courses
+                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                    Khóa học liên quan
                   </label>
                   <div className="flex gap-2 mb-2">
                     <input
@@ -519,14 +519,14 @@ const EducationManager: React.FC = () => {
                       onChange={(e) => setNewCourse(e.target.value)}
                       onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addArrayItem('relevantCourses', newCourse, setNewCourse))}
                       className="flex-1 px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:border-primary-500 focus:outline-none"
-                      placeholder="Add course..."
+                      placeholder="Thêm khóa học..."
                     />
                     <button
                       type="button"
                       onClick={() => addArrayItem('relevantCourses', newCourse, setNewCourse)}
                       className="px-4 py-2 bg-secondary-500 text-white rounded-lg hover:bg-secondary-600 transition-colors"
                     >
-                      Add
+                      Thêm
                     </button>
                   </div>
                   <div className="flex flex-wrap gap-2">
@@ -550,8 +550,8 @@ const EducationManager: React.FC = () => {
 
                 {/* Achievements */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
-                    Academic Achievements
+                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                    Thành tích học thuật
                   </label>
                   <div className="flex gap-2 mb-2">
                     <input
@@ -560,14 +560,14 @@ const EducationManager: React.FC = () => {
                       onChange={(e) => setNewAchievement(e.target.value)}
                       onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addArrayItem('achievements', newAchievement, setNewAchievement))}
                       className="flex-1 px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:border-primary-500 focus:outline-none"
-                      placeholder="Add achievement..."
+                      placeholder="Thêm thành tích..."
                     />
                     <button
                       type="button"
                       onClick={() => addArrayItem('achievements', newAchievement, setNewAchievement)}
                       className="px-4 py-2 bg-success-500 text-white rounded-lg hover:bg-success-600 transition-colors"
                     >
-                      Add
+                      Thêm
                     </button>
                   </div>
                   <div className="space-y-2">
@@ -596,7 +596,7 @@ const EducationManager: React.FC = () => {
                     onClick={closeModal}
                     className="px-6 py-2 border border-gray-600 text-gray-300 rounded-lg hover:bg-gray-700 transition-colors"
                   >
-                    Cancel
+                    Hủy
                   </button>
                   <button
                     type="submit"
@@ -607,8 +607,8 @@ const EducationManager: React.FC = () => {
                         : 'hover:bg-primary-600'
                     }`}
                   >
-                    {(createMutation.isPending || updateMutation.isPending) ? 'Saving...' : 
-                     editingEducation ? 'Update Education' : 'Create Education'}
+                    {(createMutation.isPending || updateMutation.isPending) ? 'Đang lưu...' : 
+                     editingEducation ? 'Cập nhật' : 'Tạo mới'}
                   </button>
                 </div>
               </form>

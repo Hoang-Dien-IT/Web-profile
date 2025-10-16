@@ -166,9 +166,9 @@ const ExperienceManager: React.FC = () => {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="text-center">
+          <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-500 mx-auto mb-4"></div>
-          <p className="text-gray-400">Loading experiences...</p>
+          <p className="text-gray-400">Đang tải kinh nghiệm...</p>
         </div>
       </div>
     );
@@ -185,14 +185,14 @@ const ExperienceManager: React.FC = () => {
       {/* Header */}
       <div className="flex justify-between items-center">
         <div>
-          <h3 className="text-2xl font-bold text-white">Work Experience ({experiences?.length || 0})</h3>
-          <p className="text-gray-400">Manage your professional experience</p>
+          <h3 className="text-2xl font-bold text-white">Kinh nghiệm làm việc ({experiences?.length || 0})</h3>
+          <p className="text-gray-400">Quản lý kinh nghiệm nghề nghiệp của bạn</p>
         </div>
         <button
           onClick={() => openModal()}
           className="px-4 py-2 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors"
         >
-          Add New Experience
+          Thêm kinh nghiệm
         </button>
       </div>
 
@@ -210,7 +210,7 @@ const ExperienceManager: React.FC = () => {
                   <h4 className="text-xl font-semibold text-white">{experience.position}</h4>
                   {experience.current && (
                     <span className="bg-success-500/20 text-success-300 px-2 py-1 rounded text-xs">
-                      Current
+                      Hiện tại
                     </span>
                   )}
                   <span className="bg-primary-500/20 text-primary-300 px-2 py-1 rounded text-xs capitalize">
@@ -225,8 +225,8 @@ const ExperienceManager: React.FC = () => {
                 
                 <p className="text-gray-500 text-sm mb-3">
                   {formatDate(experience.startDate)} - {
-                    experience.current ? 'Present' : 
-                    experience.endDate ? formatDate(experience.endDate) : 'Present'
+                    experience.current ? 'Hiện tại' : 
+                    experience.endDate ? formatDate(experience.endDate) : 'Hiện tại'
                   }
                 </p>
 
@@ -237,7 +237,7 @@ const ExperienceManager: React.FC = () => {
                 {/* Technologies */}
                 {experience.technologies && experience.technologies.length > 0 && (
                   <div className="mb-4">
-                    <h5 className="text-sm font-medium text-gray-400 mb-2">Technologies:</h5>
+                    <h5 className="text-sm font-medium text-gray-400 mb-2">Công nghệ:</h5>
                     <div className="flex flex-wrap gap-2">
                       {experience.technologies.slice(0, 6).map((tech: string) => (
                         <span key={tech} className="bg-secondary-500/20 text-secondary-300 px-2 py-1 rounded text-xs">
@@ -256,7 +256,7 @@ const ExperienceManager: React.FC = () => {
                 {/* Key Achievements */}
                 {experience.achievements && experience.achievements.length > 0 && (
                   <div className="mb-4">
-                    <h5 className="text-sm font-medium text-gray-400 mb-2">Key Achievements:</h5>
+                    <h5 className="text-sm font-medium text-gray-400 mb-2">Thành tựu nổi bật:</h5>
                     <ul className="text-gray-300 text-sm space-y-1">
                       {experience.achievements.slice(0, 3).map((achievement: string, index: number) => (
                         <li key={index} className="flex items-start">
@@ -274,13 +274,13 @@ const ExperienceManager: React.FC = () => {
                   onClick={() => openModal(experience)}
                   className="text-primary-400 hover:text-primary-300 text-sm px-3 py-1 border border-primary-500/50 rounded hover:bg-primary-500/20 transition-colors"
                 >
-                  Edit
+                  Chỉnh
                 </button>
                 <button
                   onClick={() => handleDelete(experience._id!)}
                   className="text-red-400 hover:text-red-300 text-sm px-3 py-1 border border-red-500/50 rounded hover:bg-red-500/20 transition-colors"
                 >
-                  Delete
+                  Xóa
                 </button>
               </div>
             </div>
@@ -290,13 +290,13 @@ const ExperienceManager: React.FC = () => {
         {(!experiences || experiences.length === 0) && (
           <div className="text-center py-12">
             <div className="text-6xl mb-4">💼</div>
-            <h3 className="text-xl font-semibold text-gray-400 mb-2">No Experience Added</h3>
-            <p className="text-gray-500 mb-6">Start by adding your first work experience</p>
+            <h3 className="text-xl font-semibold text-gray-400 mb-2">Chưa có kinh nghiệm</h3>
+            <p className="text-gray-500 mb-6">Bắt đầu bằng cách thêm kinh nghiệm làm việc</p>
             <button
               onClick={() => openModal()}
               className="px-6 py-3 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors"
             >
-              Add First Experience
+              Thêm kinh nghiệm đầu tiên
             </button>
           </div>
         )}
@@ -319,7 +319,7 @@ const ExperienceManager: React.FC = () => {
             >
               <div className="flex justify-between items-center mb-6">
                 <h3 className="text-2xl font-bold text-white">
-                  {editingExperience ? 'Edit Experience' : 'Add New Experience'}
+                  {editingExperience ? 'Chỉnh sửa kinh nghiệm' : 'Thêm kinh nghiệm mới'}
                 </h3>
                 <button
                   onClick={closeModal}
@@ -334,7 +334,7 @@ const ExperienceManager: React.FC = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-300 mb-2">
-                      Company *
+                      Công ty *
                     </label>
                     <input
                       type="text"
@@ -349,7 +349,7 @@ const ExperienceManager: React.FC = () => {
 
                   <div>
                     <label className="block text-sm font-medium text-gray-300 mb-2">
-                      Position *
+                      Vị trí *
                     </label>
                     <input
                       type="text"
@@ -364,7 +364,7 @@ const ExperienceManager: React.FC = () => {
 
                   <div>
                     <label className="block text-sm font-medium text-gray-300 mb-2">
-                      Location
+                      Địa điểm
                     </label>
                     <input
                       type="text"
@@ -378,7 +378,7 @@ const ExperienceManager: React.FC = () => {
 
                   <div>
                     <label className="block text-sm font-medium text-gray-300 mb-2">
-                      Employment Type
+                      Loại hình công việc
                     </label>
                     <select
                       name="employmentType"
@@ -396,7 +396,7 @@ const ExperienceManager: React.FC = () => {
 
                   <div>
                     <label className="block text-sm font-medium text-gray-300 mb-2">
-                      Start Date *
+                      Ngày bắt đầu *
                     </label>
                     <input
                       type="date"
@@ -410,7 +410,7 @@ const ExperienceManager: React.FC = () => {
 
                   <div>
                     <label className="block text-sm font-medium text-gray-300 mb-2">
-                      End Date
+                      Ngày kết thúc
                     </label>
                     <input
                       type="date"
@@ -433,14 +433,14 @@ const ExperienceManager: React.FC = () => {
                       onChange={handleInputChange}
                       className="mr-2"
                     />
-                    <span className="text-gray-300">I currently work here</span>
+                    <span className="text-gray-300">Tôi đang làm việc tại đây</span>
                   </label>
                 </div>
 
                 {/* Description */}
                 <div>
                   <label className="block text-sm font-medium text-gray-300 mb-2">
-                    Job Description *
+                    Mô tả công việc *
                   </label>
                   <textarea
                     name="description"
@@ -449,14 +449,14 @@ const ExperienceManager: React.FC = () => {
                     required
                     rows={4}
                     className="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:border-primary-500 focus:outline-none resize-none"
-                    placeholder="Describe your role and responsibilities..."
+                    placeholder="Mô tả nhiệm vụ và trách nhiệm công việc..."
                   />
                 </div>
 
                 {/* Technologies */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
-                    Technologies Used
+                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                    Công nghệ đã sử dụng
                   </label>
                   <div className="flex gap-2 mb-2">
                     <input
@@ -465,14 +465,14 @@ const ExperienceManager: React.FC = () => {
                       onChange={(e) => setNewTechnology(e.target.value)}
                       onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addArrayItem('technologies', newTechnology, setNewTechnology))}
                       className="flex-1 px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:border-primary-500 focus:outline-none"
-                      placeholder="Add technology..."
+                      placeholder="Thêm công nghệ..."
                     />
                     <button
                       type="button"
                       onClick={() => addArrayItem('technologies', newTechnology, setNewTechnology)}
                       className="px-4 py-2 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors"
                     >
-                      Add
+                      Thêm
                     </button>
                   </div>
                   <div className="flex flex-wrap gap-2">
@@ -496,8 +496,8 @@ const ExperienceManager: React.FC = () => {
 
                 {/* Achievements */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
-                    Key Achievements
+                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                    Thành tựu chính
                   </label>
                   <div className="flex gap-2 mb-2">
                     <input
@@ -506,14 +506,14 @@ const ExperienceManager: React.FC = () => {
                       onChange={(e) => setNewAchievement(e.target.value)}
                       onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addArrayItem('achievements', newAchievement, setNewAchievement))}
                       className="flex-1 px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:border-primary-500 focus:outline-none"
-                      placeholder="Add achievement..."
+                      placeholder="Thêm thành tựu..."
                     />
                     <button
                       type="button"
                       onClick={() => addArrayItem('achievements', newAchievement, setNewAchievement)}
                       className="px-4 py-2 bg-success-500 text-white rounded-lg hover:bg-success-600 transition-colors"
                     >
-                      Add
+                      Thêm
                     </button>
                   </div>
                   <div className="space-y-2">
@@ -542,7 +542,7 @@ const ExperienceManager: React.FC = () => {
                     onClick={closeModal}
                     className="px-6 py-2 border border-gray-600 text-gray-300 rounded-lg hover:bg-gray-700 transition-colors"
                   >
-                    Cancel
+                    Hủy
                   </button>
                   <button
                     type="submit"
@@ -553,8 +553,8 @@ const ExperienceManager: React.FC = () => {
                         : 'hover:bg-primary-600'
                     }`}
                   >
-                    {(createMutation.isPending || updateMutation.isPending) ? 'Saving...' : 
-                     editingExperience ? 'Update Experience' : 'Create Experience'}
+                    {(createMutation.isPending || updateMutation.isPending) ? 'Đang lưu...' : 
+                     editingExperience ? 'Cập nhật' : 'Tạo mới'}
                   </button>
                 </div>
               </form>

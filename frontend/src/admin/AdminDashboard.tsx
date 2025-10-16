@@ -17,12 +17,12 @@ interface MenuItem {
 }
 
 const menuItems: MenuItem[] = [
-  { id: 'profile', name: 'Profile', icon: '👤', component: ProfileManager },
-  { id: 'projects', name: 'Projects', icon: '💼', component: ProjectManager },
-  { id: 'skills', name: 'Skills', icon: '🛠️', component: SkillManager },
-  { id: 'experience', name: 'Experience', icon: '💼', component: ExperienceManager },
-  { id: 'education', name: 'Education', icon: '🎓', component: EducationManager },
-  { id: 'contact', name: 'Contact Messages', icon: '📧', component: ContactManager },
+  { id: 'profile', name: 'Hồ sơ', icon: '👤', component: ProfileManager },
+  { id: 'projects', name: 'Dự án', icon: '💼', component: ProjectManager },
+  { id: 'skills', name: 'Kỹ năng', icon: '🛠️', component: SkillManager },
+  { id: 'experience', name: 'Kinh nghiệm', icon: '💼', component: ExperienceManager },
+  { id: 'education', name: 'Học vấn', icon: '🎓', component: EducationManager },
+  { id: 'contact', name: 'Tin nhắn', icon: '📧', component: ContactManager },
 ];
 
 const AdminDashboard: React.FC = () => {
@@ -42,13 +42,13 @@ const AdminDashboard: React.FC = () => {
           <div className="p-4">
             {/* Header */}
             <div className="flex items-center justify-between mb-8">
-              {!isCollapsed && (
+                {!isCollapsed && (
                 <motion.h1 
                   className="text-2xl font-bold gradient-text"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                 >
-                  Admin Panel
+                  Bảng quản trị
                 </motion.h1>
               )}
               <button
@@ -91,15 +91,15 @@ const AdminDashboard: React.FC = () => {
           </div>
 
           {/* Footer */}
-          {!isCollapsed && (
+              {!isCollapsed && (
             <motion.div 
               className="absolute bottom-4 left-4 right-4"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
             >
               <div className="p-3 bg-white/5 rounded-lg border border-white/10">
-                <p className="text-xs text-gray-500">Version 1.0.0</p>
-                <p className="text-xs text-gray-500">Portfolio Admin</p>
+                <p className="text-xs text-gray-500">Phiên bản 1.0.0</p>
+                <p className="text-xs text-gray-500">Quản trị Portfolio</p>
               </div>
             </motion.div>
           )}

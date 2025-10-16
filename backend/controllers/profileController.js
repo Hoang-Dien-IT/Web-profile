@@ -47,9 +47,23 @@ const getProfile = async (req, res, next) => {
 // @access  Private (if authentication is added)
 const createOrUpdateProfile = async (req, res, next) => {
   try {
+    console.log('📝 Profile data received:', req.body);
+    
+    // Validate required fields
+    const { fullName, title, bio, email } = req.body;
+    if (!fullName || !title || !bio || !email) {
+      return res.status(400).json({
+        success: false,
+        error: {
+          message: 'Missing required fields: fullName, title, bio, email are required'
+        }
+      });
+    }
+
     let profile = await Profile.findOne();
     
     if (profile) {
+      console.log('✏️ Updating existing profile:', profile._id);
       // Update existing profile
       profile = await Profile.findByIdAndUpdate(
         profile._id,
@@ -57,15 +71,26 @@ const createOrUpdateProfile = async (req, res, next) => {
         { new: true, runValidators: true }
       );
     } else {
+      console.log('🆕 Creating new profile');
       // Create new profile
       profile = await Profile.create(req.body);
     }
 
+    console.log('✅ Profile saved successfully:', profile._id);
     res.status(200).json({
       success: true,
       data: profile
     });
   } catch (error) {
+    console.error('❌ Profile error:', error.message);
+    if (error.code === 11000) {
+      return res.status(400).json({
+        success: false,
+        error: {
+          message: 'Email already exists. Please use a different email address.'
+        }
+      });
+    }
     next(error);
   }
 };

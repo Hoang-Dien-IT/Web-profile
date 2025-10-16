@@ -130,9 +130,9 @@ const ContactManager: React.FC = () => {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="text-center">
+          <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-500 mx-auto mb-4"></div>
-          <p className="text-gray-400">Loading messages...</p>
+          <p className="text-gray-400">Đang tải tin nhắn...</p>
         </div>
       </div>
     );
@@ -154,8 +154,8 @@ const ContactManager: React.FC = () => {
         <div className="mb-6">
           <div className="flex justify-between items-center mb-4">
             <div>
-              <h3 className="text-2xl font-bold text-white">Contact Messages ({contacts?.length || 0})</h3>
-              <p className="text-gray-400">Manage incoming messages</p>
+              <h3 className="text-2xl font-bold text-white">Tin nhắn liên hệ ({contacts?.length || 0})</h3>
+              <p className="text-gray-400">Quản lý tin nhắn đến</p>
             </div>
           </div>
 
@@ -165,7 +165,7 @@ const ContactManager: React.FC = () => {
               type="text"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              placeholder="Search messages..."
+              placeholder="Tìm kiếm tin nhắn..."
               className="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:border-primary-500 focus:outline-none"
             />
           </div>
@@ -173,10 +173,10 @@ const ContactManager: React.FC = () => {
           {/* Filter Tabs */}
           <div className="flex space-x-1 bg-white/5 rounded-lg p-1">
             {[
-              { key: 'all', label: 'All', count: counts.all },
-              { key: 'unread', label: 'Unread', count: counts.unread },
-              { key: 'read', label: 'Read', count: counts.read },
-              { key: 'replied', label: 'Replied', count: counts.replied },
+              { key: 'all', label: 'Tất cả', count: counts.all },
+              { key: 'unread', label: 'Chưa đọc', count: counts.unread },
+              { key: 'read', label: 'Đã đọc', count: counts.read },
+              { key: 'replied', label: 'Đã trả lời', count: counts.replied },
             ].map(({ key, label, count }) => (
               <button
                 key={key}
@@ -198,10 +198,10 @@ const ContactManager: React.FC = () => {
           {filteredContacts.length === 0 ? (
             <div className="text-center py-12">
               <div className="text-4xl mb-4">📭</div>
-              <h3 className="text-lg font-semibold text-gray-400 mb-2">No Messages</h3>
-              <p className="text-gray-500">
-                {searchTerm ? 'No messages match your search' : 'No messages in this category'}
-              </p>
+                <h3 className="text-lg font-semibold text-gray-400 mb-2">Không có tin nhắn</h3>
+                <p className="text-gray-500">
+                  {searchTerm ? 'Không có tin nhắn phù hợp' : 'Không có tin nhắn trong mục này'}
+                </p>
             </div>
           ) : (
             filteredContacts.map((contact: ContactMessage) => (
@@ -236,7 +236,7 @@ const ContactManager: React.FC = () => {
                 
                 {contact.subject && (
                   <p className={`text-sm mb-2 ${contact.status === 'unread' ? 'text-gray-200' : 'text-gray-400'}`}>
-                    Subject: {contact.subject}
+                    Tiêu đề: {contact.subject}
                   </p>
                 )}
                 
@@ -347,10 +347,10 @@ const ContactManager: React.FC = () => {
           </motion.div>
         ) : (
           <div className="flex items-center justify-center h-full">
-            <div className="text-center">
+          <div className="text-center">
               <div className="text-6xl mb-4">💬</div>
-              <h3 className="text-xl font-semibold text-gray-400 mb-2">Select a Message</h3>
-              <p className="text-gray-500">Choose a message from the list to view details</p>
+              <h3 className="text-xl font-semibold text-gray-400 mb-2">Chọn tin nhắn</h3>
+              <p className="text-gray-500">Chọn một tin nhắn để xem chi tiết</p>
             </div>
           </div>
         )}

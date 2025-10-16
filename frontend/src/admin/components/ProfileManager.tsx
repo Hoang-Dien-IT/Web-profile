@@ -113,11 +113,44 @@ const ProfileManager: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
+    // Validate required fields
+    if (!formData.fullName?.trim()) {
+      alert('Vui lòng nhập họ tên');
+      return;
+    }
+    if (!formData.title?.trim()) {
+      alert('Vui lòng nhập chức danh');
+      return;
+    }
+    if (!formData.bio?.trim()) {
+      alert('Vui lòng nhập mô tả');
+      return;
+    }
+    if (!formData.email?.trim()) {
+      alert('Vui lòng nhập email');
+      return;
+    }
+    
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      alert('Vui lòng nhập email hợp lệ');
+      return;
+    }
+    
+    // Check bio length
+    if (formData.bio.length > 1000) {
+      alert('Mô tả không được quá 1000 ký tự');
+      return;
+    }
+    
     try {
       await createOrUpdateMutation.mutateAsync(formData);
-      alert('Profile updated successfully!');
+      alert('Cập nhật hồ sơ thành công!');
     } catch (error: any) {
-      alert(`Error: ${error.message || 'Failed to update profile'}`);
+      console.error('Profile update error:', error);
+      const errorMessage = error.response?.data?.error?.message || error.message || 'Không thể cập nhật hồ sơ';
+      alert(`Lỗi: ${errorMessage}`);
     }
   };
 
@@ -148,12 +181,12 @@ const ProfileManager: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
         >
-          <h3 className="text-xl font-semibold text-white mb-4">Basic Information</h3>
+          <h3 className="text-xl font-semibold text-white mb-4">Thông tin cơ bản</h3>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-2">
-                Full Name *
+                <label className="block text-sm font-medium text-gray-300 mb-2">
+                Họ và tên *
               </label>
               <input
                 type="text"
@@ -162,13 +195,13 @@ const ProfileManager: React.FC = () => {
                 onChange={handleInputChange}
                 required
                 className="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:border-primary-500 focus:outline-none"
-                placeholder="Enter your full name"
+                placeholder="Nhập họ và tên"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-2">
-                Title *
+                <label className="block text-sm font-medium text-gray-300 mb-2">
+                Chức danh *
               </label>
               <input
                 type="text"
@@ -177,12 +210,12 @@ const ProfileManager: React.FC = () => {
                 onChange={handleInputChange}
                 required
                 className="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:border-primary-500 focus:outline-none"
-                placeholder="e.g., Full Stack Developer"
+                placeholder="VD: Full Stack Developer"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-gray-300 mb-2">
                 Email *
               </label>
               <input
@@ -192,13 +225,13 @@ const ProfileManager: React.FC = () => {
                 onChange={handleInputChange}
                 required
                 className="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:border-primary-500 focus:outline-none"
-                placeholder="your@email.com"
+                placeholder="email@example.com"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-2">
-                Phone
+                <label className="block text-sm font-medium text-gray-300 mb-2">
+                Điện thoại
               </label>
               <input
                 type="tel"
@@ -206,13 +239,13 @@ const ProfileManager: React.FC = () => {
                 value={formData.phone}
                 onChange={handleInputChange}
                 className="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:border-primary-500 focus:outline-none"
-                placeholder="+1 (555) 123-4567"
+                placeholder="Ví dụ: +84 912 345 678"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-2">
-                Location
+                <label className="block text-sm font-medium text-gray-300 mb-2">
+                Địa điểm
               </label>
               <input
                 type="text"
@@ -220,12 +253,12 @@ const ProfileManager: React.FC = () => {
                 value={formData.location}
                 onChange={handleInputChange}
                 className="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:border-primary-500 focus:outline-none"
-                placeholder="City, Country"
+                placeholder="Thành phố, Quốc gia"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-gray-300 mb-2">
                 Website
               </label>
               <input
@@ -234,7 +267,7 @@ const ProfileManager: React.FC = () => {
                 value={formData.website}
                 onChange={handleInputChange}
                 className="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:border-primary-500 focus:outline-none"
-                placeholder="https://yourwebsite.com"
+                placeholder="https://website-của-bạn.com"
               />
             </div>
           </div>
@@ -275,7 +308,7 @@ const ProfileManager: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
         >
-          <h3 className="text-xl font-semibold text-white mb-4">Social Links</h3>
+          <h3 className="text-xl font-semibold text-white mb-4">Mạng xã hội</h3>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {Object.entries(formData.socialLinks || {}).map(([platform, url]) => (
@@ -283,13 +316,13 @@ const ProfileManager: React.FC = () => {
                 <label className="block text-sm font-medium text-gray-300 mb-2 capitalize">
                   {platform}
                 </label>
-                <input
+                  <input
                   type="url"
                   name={`socialLinks.${platform}`}
                   value={url || ''}
                   onChange={handleInputChange}
                   className="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:border-primary-500 focus:outline-none"
-                  placeholder={`https://${platform}.com/username`}
+                  placeholder={`https://${platform}.com/tên`}
                 />
               </div>
             ))}
@@ -303,7 +336,7 @@ const ProfileManager: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
         >
-          <h3 className="text-xl font-semibold text-white mb-4">Skills</h3>
+          <h3 className="text-xl font-semibold text-white mb-4">Kỹ năng</h3>
           
           <div className="flex gap-2 mb-4">
             <input
@@ -312,14 +345,14 @@ const ProfileManager: React.FC = () => {
               onChange={(e) => setNewSkill(e.target.value)}
               onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addSkill())}
               className="flex-1 px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:border-primary-500 focus:outline-none"
-              placeholder="Add a skill..."
+              placeholder="Thêm kỹ năng..."
             />
-            <button
+              <button
               type="button"
               onClick={addSkill}
               className="px-4 py-2 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors"
             >
-              Add
+              Thêm
             </button>
           </div>
 
@@ -349,7 +382,7 @@ const ProfileManager: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
         >
-          <h3 className="text-xl font-semibold text-white mb-4">Interests</h3>
+          <h3 className="text-xl font-semibold text-white mb-4">Sở thích</h3>
           
           <div className="flex gap-2 mb-4">
             <input
@@ -358,14 +391,14 @@ const ProfileManager: React.FC = () => {
               onChange={(e) => setNewInterest(e.target.value)}
               onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addInterest())}
               className="flex-1 px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:border-primary-500 focus:outline-none"
-              placeholder="Add an interest..."
+              placeholder="Thêm sở thích..."
             />
-            <button
+              <button
               type="button"
               onClick={addInterest}
               className="px-4 py-2 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors"
             >
-              Add
+              Thêm
             </button>
           </div>
 
@@ -404,7 +437,7 @@ const ProfileManager: React.FC = () => {
                 : 'hover:from-primary-600 hover:to-primary-700 hover:shadow-lg'
             }`}
           >
-            {createOrUpdateMutation.isPending ? 'Saving...' : 'Save Profile'}
+            {createOrUpdateMutation.isPending ? 'Đang lưu...' : 'Lưu Hồ Sơ'}
           </button>
         </motion.div>
       </form>
