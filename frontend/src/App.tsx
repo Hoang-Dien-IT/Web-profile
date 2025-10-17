@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -17,20 +16,6 @@ import Experience from './pages/Experience/Experience';
 import Projects from './pages/Projects/Projects';
 import Contact from './pages/Contact/Contact';
 
-// Admin
-import AdminDashboard from './admin/AdminDashboard';
-
-// Create Query Client
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      refetchOnWindowFocus: false,
-      retry: 1,
-      staleTime: 5 * 60 * 1000, // 5 minutes
-    },
-  },
-});
-
 const App: React.FC = () => {
   // Initialize AOS
   useEffect(() => {
@@ -41,13 +26,10 @@ const App: React.FC = () => {
       offset: 50,
     });
   }, []);
+  
   return (
-    <QueryClientProvider client={queryClient}>
       <Router>
         <Routes>
-          {/* Admin Route */}
-          <Route path="/admin" element={<AdminDashboard />} />
-          
           {/* Main Portfolio Route */}
           <Route path="/" element={
             <div className="App min-h-screen bg-gradient-to-br from-dark-900 via-dark-800 to-dark-900 text-white relative overflow-x-hidden">
@@ -97,7 +79,6 @@ const App: React.FC = () => {
           } />
         </Routes>
       </Router>
-    </QueryClientProvider>
   );
 };
 

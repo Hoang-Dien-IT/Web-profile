@@ -1,36 +1,31 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { mockSkills } from '../../data/mockSkills';
 
 const Skills: React.FC = () => {
+  // Group skills by category
   const skillCategories = [
     {
       title: 'Frontend',
-      skills: [
-        { name: 'React', level: 95 },
-        { name: 'TypeScript', level: 90 },
-        { name: 'Next.js', level: 85 },
-        { name: 'Tailwind CSS', level: 92 },
-      ]
+      skills: mockSkills.filter(skill => skill.category === 'Frontend')
     },
     {
       title: 'Backend',
-      skills: [
-        { name: 'Node.js', level: 88 },
-        { name: 'Express', level: 85 },
-        { name: 'MongoDB', level: 82 },
-        { name: 'PostgreSQL', level: 78 },
-      ]
+      skills: mockSkills.filter(skill => skill.category === 'Backend')
     },
     {
-      title: 'Tools & Others',
-      skills: [
-        { name: 'Git', level: 90 },
-        { name: 'Docker', level: 75 },
-        { name: 'AWS', level: 70 },
-        { name: 'Figma', level: 85 },
-      ]
+      title: 'Database',
+      skills: mockSkills.filter(skill => skill.category === 'Database')
+    },
+    {
+      title: 'AI/ML',
+      skills: mockSkills.filter(skill => skill.category === 'AI/ML')
+    },
+    {
+      title: 'DevOps',
+      skills: mockSkills.filter(skill => skill.category === 'DevOps')
     }
-  ];
+  ].filter(category => category.skills.length > 0); // Only show categories with skills
 
   return (
     <div className="min-h-screen pt-20 pb-16 px-4 sm:px-6 lg:px-8">

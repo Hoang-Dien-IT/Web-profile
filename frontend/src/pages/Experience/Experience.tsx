@@ -1,42 +1,18 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { mockExperiences } from '../../data/mockExperience';
 
 const Experience: React.FC = () => {
-  const experiences = [
-    {
-      company: 'Tech Innovators Inc.',
-      role: 'Senior Full Stack Developer',
-      period: '2022 - Present',
-      description: 'Leading development of scalable web applications using React, Node.js, and cloud technologies. Mentoring junior developers and architecting system solutions.',
-      achievements: [
-        'Reduced application load time by 40%',
-        'Led a team of 5 developers',
-        'Implemented CI/CD pipeline reducing deployment time by 60%'
-      ]
-    },
-    {
-      company: 'Digital Solutions Agency',
-      role: 'Frontend Developer',
-      period: '2020 - 2022',
-      description: 'Developed responsive web applications for various clients using React, Vue.js, and modern CSS frameworks.',
-      achievements: [
-        'Delivered 15+ client projects on time',
-        'Improved user engagement by 35%',
-        'Created reusable component library'
-      ]
-    },
-    {
-      company: 'StartUp Ventures',
-      role: 'Junior Web Developer',
-      period: '2019 - 2020',
-      description: 'Built and maintained web applications using JavaScript, HTML, CSS, and various frameworks.',
-      achievements: [
-        'Developed 3 major features from scratch',
-        'Fixed 100+ bugs and improved code quality',
-        'Collaborated with design team on UI/UX improvements'
-      ]
+  const experiences = mockExperiences;
+
+  const formatPeriod = (startDate: string, endDate?: string, current?: boolean) => {
+    const start = new Date(startDate).getFullYear();
+    if (current) {
+      return `${start} - Present`;
     }
-  ];
+    const end = endDate ? new Date(endDate).getFullYear() : 'Present';
+    return `${start} - ${end}`;
+  };
 
   return (
     <div className="min-h-screen pt-20 pb-16 px-4 sm:px-6 lg:px-8">
@@ -72,11 +48,11 @@ const Experience: React.FC = () => {
               <div className="glass rounded-2xl p-8">
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
                   <div>
-                    <h3 className="text-2xl font-bold text-white mb-1">{exp.role}</h3>
+                    <h3 className="text-2xl font-bold text-white mb-1">{exp.position}</h3>
                     <p className="text-primary-400 font-medium">{exp.company}</p>
                   </div>
                   <span className="text-sm text-gray-400 bg-gray-800 px-3 py-1 rounded-full mt-2 md:mt-0 w-fit">
-                    {exp.period}
+                    {formatPeriod(exp.startDate, exp.endDate, exp.current)}
                   </span>
                 </div>
 

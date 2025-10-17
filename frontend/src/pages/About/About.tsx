@@ -1,27 +1,44 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { mockProfile } from '../../data/mockProfile';
+import { mockSkills } from '../../data/mockSkills';
 
 const About: React.FC = () => {
-  const skills = [
-    { name: 'React', level: 95, color: 'from-blue-400 to-blue-600' },
-    { name: 'TypeScript', level: 90, color: 'from-blue-500 to-blue-700' },
-    { name: 'Node.js', level: 85, color: 'from-green-400 to-green-600' },
-    { name: 'Python', level: 80, color: 'from-yellow-400 to-yellow-600' },
-    { name: 'UI/UX Design', level: 85, color: 'from-purple-400 to-purple-600' },
-  ];
+  // Get top skills from mock data
+  const topSkills = mockSkills
+    .filter(skill => skill.level >= 80)
+    .slice(0, 5)
+    .map(skill => ({
+      name: skill.name,
+      level: skill.level,
+      color: getSkillColor(skill.category)
+    }));
+
+  function getSkillColor(category: string) {
+    const colors: { [key: string]: string } = {
+      'Frontend': 'from-blue-400 to-blue-600',
+      'Backend': 'from-green-400 to-green-600',
+      'Database': 'from-purple-400 to-purple-600',
+      'AI/ML': 'from-orange-400 to-orange-600',
+      'DevOps': 'from-red-400 to-red-600',
+      'Cloud': 'from-indigo-400 to-indigo-600',
+      'Tools': 'from-yellow-400 to-yellow-600'
+    };
+    return colors[category] || 'from-gray-400 to-gray-600';
+  }
 
   const experiences = [
     {
-      company: 'Tech Company',
+      company: 'TechVision Solutions',
       role: 'Senior Full Stack Developer',
-      period: '2022 - Present',
-      description: 'Leading development of modern web applications using React, Node.js, and cloud technologies.',
+      period: '2023 - Present',
+      description: 'Leading development of enterprise-level web applications and AI-driven solutions.',
     },
     {
-      company: 'Digital Agency',
-      role: 'Frontend Developer',
-      period: '2020 - 2022',
-      description: 'Created responsive and interactive user interfaces for various client projects.',
+      company: 'DataFlow Analytics',
+      role: 'Full Stack Developer',
+      period: '2021 - 2022',
+      description: 'Developed data analytics platforms and machine learning solutions for business intelligence.',
     },
   ];
 
@@ -61,15 +78,13 @@ const About: React.FC = () => {
                   deep love for crafting beautiful, functional applications.
                 </p>
                 <p>
-                  I specialize in modern web technologies including React, TypeScript, 
-                  Node.js, and cloud platforms. I believe in writing clean, maintainable 
-                  code and creating user experiences that are both intuitive and delightful.
+                  {mockProfile.bio}
                 </p>
-                <p>
-                  When I'm not coding, you can find me exploring new technologies, 
-                  contributing to open source projects, or sharing knowledge with 
-                  the developer community.
-                </p>
+                <div className="mt-4">
+                  <p><strong>Location:</strong> {mockProfile.location}</p>
+                  <p><strong>Email:</strong> {mockProfile.email}</p>
+                  <p><strong>Availability:</strong> {mockProfile.availability ? 'Available for projects' : 'Currently unavailable'}</p>
+                </div>
               </div>
 
               {/* Stats */}
@@ -105,7 +120,7 @@ const About: React.FC = () => {
             <div className="glass rounded-2xl p-8">
               <h3 className="text-2xl font-bold mb-6 gradient-text">Skills</h3>
               <div className="space-y-6">
-                {skills.map((skill, index) => (
+                {topSkills.map((skill, index) => (
                   <motion.div
                     key={skill.name}
                     initial={{ opacity: 0, x: 20 }}

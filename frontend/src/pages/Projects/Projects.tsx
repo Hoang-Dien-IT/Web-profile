@@ -1,66 +1,11 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-
-interface Project {
-  id: number;
-  title: string;
-  description: string;
-  image: string;
-  technologies: string[];
-  category: string;
-  demoUrl?: string;
-  githubUrl?: string;
-  featured: boolean;
-}
+import { mockProjects } from '../../data/mockProjects';
 
 const Projects: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState('All');
 
-  const projects: Project[] = [
-    {
-      id: 1,
-      title: 'E-Commerce Platform',
-      description: 'A full-stack e-commerce solution with React, Node.js, and MongoDB. Features include user authentication, payment processing, and admin dashboard.',
-      image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=500&h=300&fit=crop',
-      technologies: ['React', 'Node.js', 'MongoDB', 'Stripe', 'JWT'],
-      category: 'Web App',
-      demoUrl: 'https://demo.com',
-      githubUrl: 'https://github.com',
-      featured: true,
-    },
-    {
-      id: 2,
-      title: 'Task Management App',
-      description: 'A collaborative task management application with real-time updates, drag & drop functionality, and team collaboration features.',
-      image: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=500&h=300&fit=crop',
-      technologies: ['React', 'TypeScript', 'Socket.io', 'PostgreSQL'],
-      category: 'Web App',
-      demoUrl: 'https://demo.com',
-      githubUrl: 'https://github.com',
-      featured: true,
-    },
-    {
-      id: 3,
-      title: 'Weather Dashboard',
-      description: 'A beautiful weather dashboard with location-based forecasts, interactive maps, and detailed weather analytics.',
-      image: 'https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=500&h=300&fit=crop',
-      technologies: ['React', 'API Integration', 'Chart.js', 'CSS3'],
-      category: 'Frontend',
-      demoUrl: 'https://demo.com',
-      githubUrl: 'https://github.com',
-      featured: false,
-    },
-    {
-      id: 4,
-      title: 'Mobile Banking App',
-      description: 'A secure mobile banking application with biometric authentication, transaction history, and budget tracking.',
-      image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=500&h=300&fit=crop',
-      technologies: ['React Native', 'Redux', 'Firebase', 'Biometrics'],
-      category: 'Mobile App',
-      demoUrl: 'https://demo.com',
-      featured: false,
-    },
-  ];
+  const projects = mockProjects;
 
   const categories = ['All', 'Web App', 'Mobile App', 'Frontend', 'Backend'];
 
@@ -142,7 +87,7 @@ const Projects: React.FC = () => {
           >
             {filteredProjects.map((project) => (
               <motion.div
-                key={project.id}
+                key={project._id}
                 variants={itemVariants}
                 layout
                 className="group relative overflow-hidden rounded-2xl glass hover:shadow-2xl transition-all duration-500"
@@ -158,7 +103,7 @@ const Projects: React.FC = () => {
                 {/* Image */}
                 <div className="relative overflow-hidden">
                   <img
-                    src={project.image}
+                    src={project.images[0]}
                     alt={project.title}
                     className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
                   />

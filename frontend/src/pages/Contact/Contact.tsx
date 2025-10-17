@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { mockProfile } from '../../data/mockProfile';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -20,64 +21,61 @@ const Contact: React.FC = () => {
     });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    try {
-      const response = await fetch('http://127.0.0.1:5000/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-      
-      if (response.ok) {
-        alert('Message sent successfully!');
-        setFormData({
-          name: '',
-          email: '',
-          subject: '',
-          message: '',
-          projectType: 'web-development',
-          budget: 'not-specified'
-        });
-      } else {
-        const error = await response.json();
-        alert(`Error: ${error.error?.message || 'Failed to send message'}`);
-      }
-    } catch (error: any) {
-      alert(`Error: ${error.message || 'Failed to send message'}`);
-    } finally {
-      setIsSubmitting(false);
-    }
+    // Create mailto link with form data
+    const subject = encodeURIComponent(formData.subject || 'Contact from Portfolio');
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\n` +
+      `Email: ${formData.email}\n` +
+      `Project Type: ${formData.projectType}\n` +
+      `Budget: ${formData.budget}\n\n` +
+      `Message:\n${formData.message}`
+    );
+    
+    const mailtoLink = `mailto:${mockProfile.email}?subject=${subject}&body=${body}`;
+    window.open(mailtoLink);
+    
+    // Reset form
+    setFormData({
+      name: '',
+      email: '',
+      subject: '',
+      message: '',
+      projectType: 'web-development',
+      budget: 'not-specified'
+    });
+    
+    setIsSubmitting(false);
+    alert('Email client opened! Please send the email to complete your message.');
   };
 
   const contactInfo = [
     {
       icon: '📧',
       title: 'Email',
-      value: 'your@email.com',
-      link: 'mailto:your@email.com'
+      value: mockProfile.email,
+      link: `mailto:${mockProfile.email}`
     },
     {
       icon: '📱',
       title: 'Phone',
-      value: '+1 (555) 123-4567',
-      link: 'tel:+15551234567'
+      value: mockProfile.phone || '+84 123 456 789',
+      link: `tel:${mockProfile.phone || '+84123456789'}`
     },
     {
       icon: '📍',
       title: 'Location',
-      value: 'San Francisco, CA',
+      value: mockProfile.location,
       link: '#'
     },
     {
       icon: '💼',
       title: 'LinkedIn',
-      value: 'linkedin.com/in/yourprofile',
-      link: 'https://linkedin.com/in/yourprofile'
+      value: mockProfile.socialLinks.linkedin?.replace('https://www.linkedin.com/in/', '') || 'linkedin.com/in/hoang-dien',
+      link: mockProfile.socialLinks.linkedin || 'https://linkedin.com/in/hoang-dien'
     }
   ];
 
