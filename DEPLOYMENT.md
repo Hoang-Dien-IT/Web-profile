@@ -1,23 +1,24 @@
-# Deployment Guide
+# Deployment Guide - Frontend Only
 
-## 🚀 Frontend Deployment (Vercel/Netlify)
+## 🚀 Vercel Deployment (Recommended)
 
-### Vercel Deployment
-1. Install Vercel CLI:
-   ```bash
-   npm install -g vercel
-   ```
+This is now a **frontend-only React application** ready for static deployment.
 
-2. Deploy frontend:
-   ```bash
-   cd frontend
-   vercel
-   ```
+### Quick Deploy to Vercel
 
-3. Configure build settings:
+1. **Connect to Vercel:**
+   - Go to [vercel.com](https://vercel.com)
+   - Connect your GitHub account
+   - Import this repository
+
+2. **Build Settings:**
+   - Framework Preset: `Create React App`
    - Build Command: `npm run build`
    - Output Directory: `build`
-   - Install Command: `npm install`
+   - Root Directory: `frontend`
+
+3. **Environment Variables:**
+   - ⚠️ No environment variables needed (static site)
 
 ### Netlify Deployment
 1. Build the project:

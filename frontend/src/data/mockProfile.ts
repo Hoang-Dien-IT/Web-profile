@@ -65,7 +65,7 @@ export const mockProfile: Profile = {
     "Problem Solving"
   ],
   availability: true,
-  avatar: "/images/profile-avatar.jpg",
+  avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face&auto=format",
   resume: "/files/hoangdien-cv.pdf",
   socialLinks: {
     github: "https://github.com/hoangdiendev",

@@ -29,9 +29,9 @@ export const mockProjects: Project[] = [
     status: "completed",
     featured: true,
     images: [
-      "/images/projects/ecommerce-1.jpg",
-      "/images/projects/ecommerce-2.jpg",
-      "/images/projects/ecommerce-3.jpg"
+      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop&crop=entropy&auto=format",
+      "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&h=600&fit=crop&crop=entropy&auto=format",
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop&crop=entropy&auto=format"
     ],
     demoUrl: "https://ai-ecommerce-demo.vercel.app",
     githubUrl: "https://github.com/hoangdiendev/ai-ecommerce",
@@ -60,8 +60,8 @@ export const mockProjects: Project[] = [
     status: "completed",
     featured: true,
     images: [
-      "/images/projects/taskapp-1.jpg",
-      "/images/projects/taskapp-2.jpg"
+      "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&h=600&fit=crop&crop=entropy&auto=format",
+      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop&crop=entropy&auto=format"
     ],
     demoUrl: "https://smart-tasks-demo.vercel.app",
     githubUrl: "https://github.com/hoangdiendev/smart-tasks",
@@ -90,8 +90,8 @@ export const mockProjects: Project[] = [
     status: "in-progress",
     featured: false,
     images: [
-      "/images/projects/chat-1.jpg",
-      "/images/projects/chat-2.jpg"
+      "https://images.unsplash.com/photo-1577563908411-5077b6dc7624?w=800&h=600&fit=crop&crop=entropy&auto=format",
+      "https://images.unsplash.com/photo-1553484771-371a605b060b?w=800&h=600&fit=crop&crop=entropy&auto=format"
     ],
     demoUrl: "https://realtime-chat-demo.vercel.app",
     githubUrl: "https://github.com/hoangdiendev/realtime-chat",
@@ -119,9 +119,9 @@ export const mockProjects: Project[] = [
     status: "completed",
     featured: true,
     images: [
-      "/images/projects/dashboard-1.jpg",
-      "/images/projects/dashboard-2.jpg",
-      "/images/projects/dashboard-3.jpg"
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&crop=entropy&auto=format",
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop&crop=entropy&auto=format",
+      "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=800&h=600&fit=crop&crop=entropy&auto=format"
     ],
     demoUrl: "https://data-dashboard-demo.vercel.app",
     githubUrl: "https://github.com/hoangdiendev/data-dashboard",
@@ -150,7 +150,7 @@ export const mockProjects: Project[] = [
     status: "planned",
     featured: false,
     images: [
-      "/images/projects/iot-1.jpg"
+      "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&h=600&fit=crop&crop=entropy&auto=format"
     ],
     githubUrl: "https://github.com/hoangdiendev/iot-monitoring",
     startDate: "2024-11-01T00:00:00.000Z",

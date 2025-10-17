@@ -52,11 +52,27 @@ const About: React.FC = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
+          {/* Profile Image */}
+          <div className="mb-8">
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-primary-500 shadow-lg"
+            >
+              <img
+                src={mockProfile.avatar}
+                alt={mockProfile.fullName}
+                className="w-full h-full object-cover"
+              />
+            </motion.div>
+          </div>
+
           <h1 className="text-4xl md:text-6xl font-bold mb-4">
             About <span className="gradient-text">Me</span>
           </h1>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Passionate developer with a love for creating amazing digital experiences
+            {mockProfile.bio}
           </p>
         </motion.div>
 
