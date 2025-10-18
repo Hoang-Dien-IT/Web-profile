@@ -1,31 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { mockProfile } from '../../data/mockProfile';
-import { mockSkills } from '../../data/mockSkills';
 
 const About: React.FC = () => {
-  // Get top skills from mock data
-  const topSkills = mockSkills
-    .filter(skill => skill.level >= 80)
-    .slice(0, 5)
-    .map(skill => ({
-      name: skill.name,
-      level: skill.level,
-      color: getSkillColor(skill.category)
-    }));
+  // Note: topSkills removed — using categorized skills list below instead
 
-  function getSkillColor(category: string) {
-    const colors: { [key: string]: string } = {
-      'Frontend': 'from-blue-400 to-blue-600',
-      'Backend': 'from-green-400 to-green-600',
-      'Database': 'from-purple-400 to-purple-600',
-      'AI/ML': 'from-orange-400 to-orange-600',
-      'DevOps': 'from-red-400 to-red-600',
-      'Cloud': 'from-indigo-400 to-indigo-600',
-      'Tools': 'from-yellow-400 to-yellow-600'
-    };
-    return colors[category] || 'from-gray-400 to-gray-600';
-  }
+  // getSkillColor removed — skills list below uses explicit categories
 
   const experiences = [
     {
@@ -135,25 +115,46 @@ const About: React.FC = () => {
             {/* Skills */}
             <div className="glass rounded-2xl p-8">
               <h3 className="text-2xl font-bold mb-6 gradient-text">Skills</h3>
-              <div className="space-y-6">
-                {topSkills.map((skill, index) => (
+              <div className="space-y-6 text-left text-gray-200">
+                {[
+                  {
+                    title: 'Programming Language',
+                    items: ['Python', 'C/C++']
+                  },
+                  {
+                    title: 'Framework',
+                    items: ['TensorFlow', 'YOLO']
+                  },
+                  {
+                    title: 'Library',
+                    items: ['NumPy', 'Pandas', 'Matplotlib', 'OpenCV', 'Scikit-learn', 'Keras', 'Pillow']
+                  },
+                  {
+                    title: 'Database Management System',
+                    items: ['MySQL', 'SQLServer', 'MongoDB']
+                  },
+                  {
+                    title: 'Tools & Platforms',
+                    items: ['Git / GitHub']
+                  }
+                ].map((group, gIndex) => (
                   <motion.div
-                    key={skill.name}
+                    key={group.title}
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
+                    transition={{ duration: 0.5, delay: 0.6 + gIndex * 0.08 }}
+                    className=""
                   >
-                    <div className="flex justify-between items-center mb-2">
-                      <span className="font-medium">{skill.name}</span>
-                      <span className="text-sm text-gray-400">{skill.level}%</span>
-                    </div>
-                    <div className="w-full bg-gray-700 rounded-full h-2">
-                      <motion.div
-                        className={`h-2 rounded-full bg-gradient-to-r ${skill.color}`}
-                        initial={{ width: 0 }}
-                        animate={{ width: `${skill.level}%` }}
-                        transition={{ duration: 1, delay: 0.8 + index * 0.1 }}
-                      />
+                    <h4 className="font-semibold text-lg text-primary-200 mb-2">{group.title}</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {group.items.map((it, i) => (
+                        <span
+                          key={it}
+                          className="px-3 py-1 rounded-full text-sm bg-white/5 border border-white/6"
+                        >
+                          {it}
+                        </span>
+                      ))}
                     </div>
                   </motion.div>
                 ))}
@@ -191,26 +192,6 @@ const About: React.FC = () => {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="mt-16"
         >
-          <div className="glass rounded-2xl p-8 text-center">
-            <h3 className="text-2xl font-bold mb-8 gradient-text">Technologies I Love</h3>
-            <div className="flex flex-wrap justify-center gap-4">
-              {[
-                'React', 'TypeScript', 'Node.js', 'Express', 'MongoDB', 'PostgreSQL',
-                'Docker', 'AWS', 'Git', 'Figma', 'Tailwind CSS', 'Next.js'
-              ].map((tech, index) => (
-                <motion.span
-                  key={tech}
-                  className="px-4 py-2 bg-white/5 rounded-full text-sm border border-white/10 hover:border-primary-500 transition-colors duration-300"
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.3, delay: 0.8 + index * 0.05 }}
-                  whileHover={{ scale: 1.05 }}
-                >
-                  {tech}
-                </motion.span>
-              ))}
-            </div>
-          </div>
         </motion.div>
       </div>
     </div>
