@@ -147,7 +147,7 @@ const Home: React.FC = () => {
         {/* CTA Buttons */}
         <motion.div 
           variants={itemVariants}
-          className="flex flex-col sm:flex-row gap-6 justify-center items-center"
+          className="flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
           <motion.div
             whileHover={{ scale: 1.05 }}
@@ -172,6 +172,23 @@ const Home: React.FC = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </motion.svg>
             </button>
+          </motion.div>
+
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <a
+              href="https://drive.google.com/file/d/1QoWI4A9RuRBHf9OoMxEXfgF4CxGki0Bm/view?usp=drive_link"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center px-8 py-4 border-2 border-orange-500 text-orange-400 font-semibold rounded-full hover:bg-orange-500 hover:text-white transition-all duration-300 backdrop-blur-sm bg-white/5"
+            >
+              <svg className="mr-2 w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
+              </svg>
+              Download Resume
+            </a>
           </motion.div>
 
           <motion.div
