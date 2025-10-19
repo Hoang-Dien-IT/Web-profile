@@ -62,91 +62,117 @@ const Navbar: React.FC = () => {
 
   return (
     <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled 
-          ? 'bg-black/80 backdrop-blur-md shadow-2xl border-b border-white/10' 
+          ? 'bg-black/20 backdrop-blur-2xl shadow-2xl border-b border-white/10' 
           : 'bg-transparent'
       }`}
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Premium floating background effect */}
+      <div className={`absolute inset-0 transition-all duration-500 ${
+        scrolled 
+          ? 'bg-gradient-to-r from-black/40 via-gray-900/30 to-black/40 backdrop-blur-2xl' 
+          : 'bg-transparent'
+      }`} />
+      
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo */}
+          {/* Premium Logo */}
           <motion.div
-            whileHover={{ scale: 1.05 }}
+            whileHover={{ scale: 1.08, y: -2 }}
             whileTap={{ scale: 0.95 }}
+            className="relative group"
           >
             <button
               onClick={() => scrollToSection('#home')}
-              className="flex items-center space-x-2 text-2xl font-bold gradient-text cursor-pointer"
+              className="flex items-center space-x-3 text-2xl font-bold gradient-text cursor-pointer relative z-10"
             >
-              <div className="w-10 h-10 bg-gradient-to-r from-primary-500 to-primary-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-black">P</span>
+              <div className="w-12 h-12 bg-gradient-to-br from-orange-500 via-red-500 to-orange-600 rounded-xl flex items-center justify-center shadow-2xl relative mega-glow">
+                <span className="text-white font-black text-lg">P</span>
+                <span className="absolute inset-0 bg-gradient-to-br from-orange-400 to-red-400 rounded-xl blur opacity-50 group-hover:opacity-80 transition-opacity duration-300" />
               </div>
-              <span className="hidden sm:block">Portfolio</span>
+              <span className="hidden sm:block relative">
+                Portfolio
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-orange-500 to-red-500 group-hover:w-full transition-all duration-300" />
+              </span>
             </button>
           </motion.div>
 
-          {/* Desktop Menu */}
+          {/* Premium Desktop Menu */}
           <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-1">
+            <div className={`ml-10 flex items-center space-x-2 p-2 rounded-2xl transition-all duration-500 ${
+              scrolled 
+                ? 'glass-premium shadow-2xl' 
+                : 'bg-white/5 backdrop-blur-sm'
+            }`}>
               {navItems.map((item, index) => (
                 <motion.div
                   key={item.name}
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  whileHover={{ y: -2 }}
                 >
                   <button
                     onClick={() => scrollToSection(item.href)}
-                    className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 relative group ${
+                    className={`px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-300 relative group transform-3d ${
                       activeSection === item.href.replace('#', '')
-                        ? 'text-primary-400'
-                        : 'text-gray-300 hover:text-white'
+                        ? 'text-orange-300 bg-gradient-to-r from-orange-500/20 to-red-500/20'
+                        : 'text-gray-300 hover:text-white hover:bg-white/10'
                     }`}
                   >
-                    {item.name}
+                    <span className="relative z-10">{item.name}</span>
                     
-                    {/* Active indicator */}
+                    {/* Premium Active indicator */}
                     {activeSection === item.href.replace('#', '') && (
                       <motion.div
                         layoutId="activeTab"
-                        className="absolute inset-0 bg-primary-500/20 rounded-lg"
+                        className="absolute inset-0 bg-gradient-to-r from-orange-500/30 to-red-500/30 rounded-xl mega-glow"
                         initial={false}
                         transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                       />
                     )}
                     
-                    {/* Hover effect */}
-                    <div className="absolute inset-0 bg-white/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    {/* Hover glow effect */}
+                    <span className="absolute inset-0 bg-gradient-to-r from-orange-500/10 to-red-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </button>
                 </motion.div>
               ))}
             </div>
           </div>
 
-          {/* CTA Buttons */}
-          <div className="hidden md:flex items-center space-x-3">
-            {/* Resume Button */}
+          {/* Ultra Premium CTA Buttons */}
+          <div className="hidden md:flex items-center space-x-4">
+            {/* Resume Button - enhanced with glow and accessibility */}
             <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.06 }}
+              whileTap={{ scale: 0.96 }}
+              className="relative"
             >
               <a
                 href="https://drive.google.com/file/d/1QoWI4A9RuRBHf9OoMxEXfgF4CxGki0Bm/view?usp=drive_link"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="border border-primary-500 text-primary-400 px-6 py-2 rounded-full font-semibold hover:bg-primary-500 hover:text-white transition-all duration-300 flex items-center gap-2"
+                aria-label="Open resume in Google Drive (opens in a new tab)"
+                title="Download Resume"
+                className="inline-flex items-center px-6 py-2 rounded-full font-semibold transition-all duration-300 text-primary-400 border border-primary-500 bg-white/3 backdrop-blur-sm hover:text-white hover:from-primary-600 hover:to-primary-700"
               >
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
-                </svg>
-                Resume
+                <span className="relative z-10 flex items-center gap-2">
+                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" aria-hidden>
+                    <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
+                  </svg>
+                  Resume
+                </span>
+                {/* Glow */}
+                <span className="absolute inset-0 rounded-full blur-lg opacity-0 transition-opacity duration-300 bg-primary-500/30 group-hover:opacity-100" aria-hidden />
               </a>
+              {/* Subtle animated ring */}
+              <span className="absolute -inset-1 rounded-full border border-primary-500 opacity-20 animate-pulse-slow pointer-events-none" aria-hidden />
             </motion.div>
-            
+
             {/* Contact Button */}
             <motion.div
               whileHover={{ scale: 1.05 }}
