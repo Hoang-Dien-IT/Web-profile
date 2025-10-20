@@ -188,7 +188,7 @@ const Navbar: React.FC = () => {
                 onClick={() => scrollToSection('#contact')}
                 className="bg-gradient-to-r from-primary-500 to-primary-600 text-white px-6 py-2 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:from-primary-600 hover:to-primary-700"
               >
-                Let's Talk
+                {t('nav.letsTalk')}
               </button>
             </motion.div>
           </div>

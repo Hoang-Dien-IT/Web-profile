@@ -1,8 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { mockProfile } from '../../data/mockProfile';
+import { useLanguage } from '../../context/LanguageContext';
 
 const About: React.FC = () => {
+  const { t } = useLanguage();
+  
   // Note: topSkills removed — using categorized skills list below instead
 
   // getSkillColor removed — skills list below uses explicit categories
@@ -49,10 +52,10 @@ const About: React.FC = () => {
           </div>
 
           <h1 className="text-4xl md:text-6xl font-bold mb-4">
-            About <span className="gradient-text">Me</span>
+            {t('about.title')}
           </h1>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            {mockProfile.bio}
+            {t('about.subtitle')}
           </p>
         </motion.div>
 
@@ -65,30 +68,27 @@ const About: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <div className="glass rounded-2xl p-8">
-              <h2 className="text-3xl font-bold mb-6 gradient-text">My Story</h2>
+              <h2 className="text-3xl font-bold mb-6 gradient-text">{t('about.story')}</h2>
               <div className="space-y-4 text-gray-300 leading-relaxed">
                 <p>
-                  I'm a passionate full-stack developer with over 4 years of experience 
-                  creating digital solutions that make a difference. My journey started 
-                  with curiosity about how websites work, and it has evolved into a 
-                  deep love for crafting beautiful, functional applications.
+                  {t('about.description1')}
                 </p>
                 <p>
                   {mockProfile.bio}
                 </p>
                 <div className="mt-4">
-                  <p><strong>Location:</strong> {mockProfile.location}</p>
-                  <p><strong>Email:</strong> {mockProfile.email}</p>
-                  <p><strong>Availability:</strong> {mockProfile.availability ? 'Available for projects' : 'Currently unavailable'}</p>
+                  <p><strong>{t('about.location')}:</strong> {mockProfile.location}</p>
+                  <p><strong>{t('about.email')}:</strong> {mockProfile.email}</p>
+                  <p><strong>{t('about.availability')}:</strong> {mockProfile.availability ? t('about.availableText') : t('about.unavailableText')}</p>
                 </div>
               </div>
 
               {/* Stats */}
               <div className="grid grid-cols-3 gap-4 mt-8">
                 {[
-                  { number: '50+', label: 'Projects' },
-                  { number: '4+', label: 'Years' },
-                  { number: '20+', label: 'Clients' },
+                  { number: '50+', label: t('about.projects') },
+                  { number: '4+', label: t('about.years') },
+                  { number: '20+', label: t('about.clients') },
                 ].map((stat, index) => (
                   <motion.div
                     key={index}
@@ -114,27 +114,27 @@ const About: React.FC = () => {
           >
             {/* Skills */}
             <div className="glass rounded-2xl p-8">
-              <h3 className="text-2xl font-bold mb-6 gradient-text">Skills</h3>
+              <h3 className="text-2xl font-bold mb-6 gradient-text">{t('about.skills.title')}</h3>
               <div className="space-y-6 text-left text-gray-200">
                 {[
                   {
-                    title: 'Programming Language',
+                    title: t('about.skills.programming'),
                     items: ['Python', 'C/C++']
                   },
                   {
-                    title: 'Framework',
+                    title: t('about.skills.framework'),
                     items: ['TensorFlow', 'YOLO']
                   },
                   {
-                    title: 'Library',
+                    title: t('about.skills.library'),
                     items: ['NumPy', 'Pandas', 'Matplotlib', 'OpenCV', 'Scikit-learn', 'Keras', 'Pillow']
                   },
                   {
-                    title: 'Database Management System',
+                    title: t('about.skills.database'),
                     items: ['MySQL', 'SQLServer', 'MongoDB']
                   },
                   {
-                    title: 'Tools & Platforms',
+                    title: t('about.skills.tools'),
                     items: ['Git / GitHub']
                   }
                 ].map((group, gIndex) => (
@@ -163,7 +163,7 @@ const About: React.FC = () => {
 
             {/* Experience */}
             <div className="glass rounded-2xl p-8">
-              <h3 className="text-2xl font-bold mb-6 gradient-text">Experience</h3>
+              <h3 className="text-2xl font-bold mb-6 gradient-text">{t('about.experience.title')}</h3>
               <div className="space-y-6">
                 {experiences.map((exp, index) => (
                   <motion.div
