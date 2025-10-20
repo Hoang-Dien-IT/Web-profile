@@ -1,7 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useLanguage } from '../../context/LanguageContext';
 
 const Skills: React.FC = () => {
+  const { t } = useLanguage();
+  
   const technologies = [
     { name: 'React', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg', color: '#61DAFB' },
     { name: 'TypeScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg', color: '#3178C6' },
@@ -26,10 +29,10 @@ const Skills: React.FC = () => {
           className="text-center mb-16"
         >
           <h1 className="text-4xl md:text-6xl font-bold mb-4">
-            Technologies I <span className="gradient-text">Love</span>
+            {t('skills.title')}
           </h1>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Modern tools and technologies I use to build amazing digital experiences
+            {t('skills.subtitle')}
           </p>
         </motion.div>
 
@@ -69,26 +72,6 @@ const Skills: React.FC = () => {
             </motion.div>
           ))}
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8 }}
-          className="text-center mt-16"
-        >
-          <p className="text-lg text-gray-400 mb-6">
-            Always learning and exploring new technologies to stay ahead of the curve
-          </p>
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-primary-600 to-secondary-600 px-6 py-3 rounded-full text-white font-semibold cursor-pointer"
-          >
-            <span>Let's Build Something Together</span>
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-            </svg>
-          </motion.div>
-        </motion.div>
       </div>
     </div>
   );
