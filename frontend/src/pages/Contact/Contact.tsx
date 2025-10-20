@@ -80,20 +80,38 @@ const Contact: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen pt-20 pb-16 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-6xl mx-auto">
+    <div className="min-h-screen pt-20 pb-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-br from-orange-500/10 to-pink-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 right-1/3 w-64 h-64 bg-gradient-to-br from-green-500/5 to-teal-500/5 rounded-full blur-2xl animate-pulse delay-2000"></div>
+      </div>
+      
+      <div className="max-w-6xl mx-auto relative z-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
-          <h1 className="text-4xl md:text-6xl font-bold mb-4">
-            Get In <span className="gradient-text">Touch</span>
-          </h1>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Let's work together to bring your ideas to life
-          </p>
+          <motion.div
+            className="inline-block mb-6"
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.3 }}
+          >
+            <h1 className="text-5xl md:text-7xl font-black mb-4 bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent">
+              Get In <span className="bg-gradient-to-r from-orange-400 via-red-500 to-pink-500 bg-clip-text text-transparent">Touch</span>
+            </h1>
+          </motion.div>
+          <motion.p 
+            className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+          >
+            Let's work together to bring your <span className="text-orange-400 font-medium">ideas</span> to life
+          </motion.p>
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12">
@@ -102,34 +120,43 @@ const Contact: React.FC = () => {
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="glass rounded-2xl p-8"
+            className="relative group"
           >
-            <h2 className="text-2xl font-bold mb-6 gradient-text">Send Message</h2>
+            <div className="absolute -inset-1 bg-gradient-to-r from-orange-500/20 via-purple-500/20 to-blue-500/20 rounded-3xl blur-lg opacity-75 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 shadow-2xl">
+              <div className="flex items-center mb-8">
+                <div className="w-12 h-12 bg-gradient-to-r from-orange-500 to-red-500 rounded-xl flex items-center justify-center mr-4">
+                  <span className="text-2xl">✉️</span>
+                </div>
+                <h2 className="text-3xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">Send Message</h2>
+              </div>
             
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium mb-2">Name *</label>
-                  <input
+                  <motion.input
                     type="text"
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 focus:border-primary-500 focus:outline-none transition-colors duration-300"
+                    className="w-full bg-gradient-to-r from-white/5 to-white/10 border border-white/20 rounded-xl px-5 py-4 focus:border-orange-500 focus:shadow-lg focus:shadow-orange-500/20 focus:outline-none transition-all duration-300 text-white placeholder-gray-400"
                     placeholder="Your name"
+                    whileFocus={{ scale: 1.02 }}
                   />
                 </div>
                 <div>
                   <label className="block text-sm font-medium mb-2">Email *</label>
-                  <input
+                  <motion.input
                     type="email"
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 focus:border-primary-500 focus:outline-none transition-colors duration-300"
+                    className="w-full bg-gradient-to-r from-white/5 to-white/10 border border-white/20 rounded-xl px-5 py-4 focus:border-orange-500 focus:shadow-lg focus:shadow-orange-500/20 focus:outline-none transition-all duration-300 text-white placeholder-gray-400"
                     placeholder="your@email.com"
+                    whileFocus={{ scale: 1.02 }}
                   />
                 </div>
               </div>
@@ -213,6 +240,7 @@ const Contact: React.FC = () => {
                 )}
               </motion.button>
             </form>
+            </div>
           </motion.div>
 
           {/* Contact Info */}
@@ -222,8 +250,15 @@ const Contact: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="space-y-8"
           >
-            <div className="glass rounded-2xl p-8">
-              <h3 className="text-2xl font-bold mb-6 gradient-text">Contact Information</h3>
+            <div className="relative group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-3xl blur-lg opacity-75 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 shadow-2xl">
+                <div className="flex items-center mb-8">
+                  <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl flex items-center justify-center mr-4">
+                    <span className="text-2xl">📞</span>
+                  </div>
+                  <h3 className="text-3xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">Contact Information</h3>
+                </div>
               <div className="space-y-6">
                 {contactInfo.map((info, index) => (
                   <motion.a
@@ -245,17 +280,30 @@ const Contact: React.FC = () => {
                   </motion.a>
                 ))}
               </div>
+              </div>
             </div>
 
             {/* Quick Response */}
-            <div className="glass rounded-2xl p-8">
-              <h3 className="text-xl font-bold mb-4 gradient-text">Quick Response</h3>
-              <p className="text-gray-400 mb-4">
-                I typically respond within 24-48 hours. For urgent matters, feel free to call directly.
+            <div className="relative group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-green-500/20 via-teal-500/20 to-blue-500/20 rounded-3xl blur-lg opacity-75 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 shadow-2xl">
+              <div className="flex items-center mb-6">
+                <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-teal-500 rounded-xl flex items-center justify-center mr-4">
+                  <span className="text-2xl">⚡</span>
+                </div>
+                <h3 className="text-2xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">Quick Response</h3>
+              </div>
+              <p className="text-gray-300 mb-6 leading-relaxed">
+                I typically respond within <span className="text-green-400 font-semibold">24-48 hours</span>. For urgent matters, feel free to call directly.
               </p>
-              <div className="flex items-center text-sm text-gray-500">
-                <span className="w-3 h-3 bg-green-500 rounded-full animate-pulse mr-2"></span>
-                Available for new projects
+              <motion.div 
+                className="flex items-center bg-gradient-to-r from-green-500/20 to-teal-500/20 rounded-xl p-4 border border-green-500/30"
+                animate={{ scale: [1, 1.02, 1] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <span className="w-4 h-4 bg-gradient-to-r from-green-400 to-green-500 rounded-full animate-pulse mr-3 shadow-lg shadow-green-500/50"></span>
+                <span className="text-green-300 font-medium">Available for new projects</span>
+              </motion.div>
               </div>
             </div>
           </motion.div>
