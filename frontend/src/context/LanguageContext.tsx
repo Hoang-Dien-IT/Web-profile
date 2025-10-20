@@ -62,6 +62,16 @@ const translations = {
     'experience.subtitle': 'My professional journey',
     'experience.keyAchievements': 'Key Achievements',
 
+    // About Experience Data
+    'about.experience.techvision.role': 'Senior Full Stack Developer',
+    'about.experience.techvision.company': 'TechVision Solutions',
+    'about.experience.techvision.period': '2023 - Present',
+    'about.experience.techvision.description': 'Leading development of enterprise-level web applications and AI-driven solutions.',
+    'about.experience.dataflow.role': 'Full Stack Developer',
+    'about.experience.dataflow.company': 'DataFlow Analytics',
+    'about.experience.dataflow.period': '2021 - 2022',
+    'about.experience.dataflow.description': 'Developed data analytics platforms and machine learning solutions for business intelligence.',
+
     // Projects Page
     'projects.title': 'Projects',
     'projects.subtitle': 'Things I\'ve built',
@@ -123,6 +133,16 @@ const translations = {
     'experience.title': 'Kinh Nghiệm',
     'experience.subtitle': 'Hành trình nghề nghiệp của tôi',
     'experience.keyAchievements': 'Thành Tựu Chính',
+
+    // About Experience Data
+    'about.experience.techvision.role': 'Lập Trình Viên Full Stack Cấp Cao',
+    'about.experience.techvision.company': 'TechVision Solutions',
+    'about.experience.techvision.period': '2023 - Hiện tại',
+    'about.experience.techvision.description': 'Dẫn dắt phát triển các ứng dụng web cấp doanh nghiệp và các giải pháp được điều khiển bởi AI.',
+    'about.experience.dataflow.role': 'Lập Trình Viên Full Stack',
+    'about.experience.dataflow.company': 'DataFlow Analytics',
+    'about.experience.dataflow.period': '2021 - 2022',
+    'about.experience.dataflow.description': 'Phát triển các nền tảng phân tích dữ liệu và các giải pháp học máy cho trí tuệ kinh doanh.',
 
     // Projects Page
     'projects.title': 'Dự Án',

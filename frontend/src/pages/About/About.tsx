@@ -12,16 +12,16 @@ const About: React.FC = () => {
 
   const experiences = [
     {
-      company: 'TechVision Solutions',
-      role: 'Senior Full Stack Developer',
-      period: '2023 - Present',
-      description: 'Leading development of enterprise-level web applications and AI-driven solutions.',
+      company: t('about.experience.techvision.company'),
+      role: t('about.experience.techvision.role'),
+      period: t('about.experience.techvision.period'),
+      description: t('about.experience.techvision.description'),
     },
     {
-      company: 'DataFlow Analytics',
-      role: 'Full Stack Developer',
-      period: '2021 - 2022',
-      description: 'Developed data analytics platforms and machine learning solutions for business intelligence.',
+      company: t('about.experience.dataflow.company'),
+      role: t('about.experience.dataflow.role'),
+      period: t('about.experience.dataflow.period'),
+      description: t('about.experience.dataflow.description'),
     },
   ];
 
