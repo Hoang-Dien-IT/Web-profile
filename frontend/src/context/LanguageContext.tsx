@@ -60,6 +60,7 @@ const translations = {
     // Experience Page
     'experience.title': 'Experience',
     'experience.subtitle': 'My professional journey',
+    'experience.keyAchievements': 'Key Achievements',
 
     // Projects Page
     'projects.title': 'Projects',
@@ -121,6 +122,7 @@ const translations = {
     // Experience Page
     'experience.title': 'Kinh Nghiệm',
     'experience.subtitle': 'Hành trình nghề nghiệp của tôi',
+    'experience.keyAchievements': 'Thành Tựu Chính',
 
     // Projects Page
     'projects.title': 'Dự Án',

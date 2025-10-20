@@ -1,8 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { mockExperiences } from '../../data/mockExperience';
+import { useLanguage } from '../../context/LanguageContext';
 
 const Experience: React.FC = () => {
+  const { t } = useLanguage();
   const experiences = mockExperiences;
 
   const formatPeriod = (startDate: string, endDate?: string, current?: boolean) => {
@@ -23,10 +25,10 @@ const Experience: React.FC = () => {
           className="text-center mb-16"
         >
           <h1 className="text-4xl md:text-6xl font-bold mb-4">
-            My <span className="gradient-text">Experience</span>
+            {t('experience.title')}
           </h1>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Professional journey and career milestones
+            {t('experience.subtitle')}
           </p>
         </motion.div>
 
@@ -61,7 +63,7 @@ const Experience: React.FC = () => {
                 </p>
 
                 <div>
-                  <h4 className="text-lg font-semibold mb-3 gradient-text">Key Achievements:</h4>
+                  <h4 className="text-lg font-semibold mb-3 gradient-text">{t('experience.keyAchievements')}:</h4>
                   <ul className="space-y-2">
                     {exp.achievements.map((achievement, i) => (
                       <li key={i} className="flex items-center text-gray-300">
