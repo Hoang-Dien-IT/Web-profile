@@ -26,13 +26,13 @@ export interface Profile {
 
 export const mockProfile: Profile = {
   _id: "profile-001",
-  fullName: "Hoàng Diên",
+  fullName: "Nguyễn Hoàng Điển",
   title: "Full Stack Developer & AI Engineer",
   bio: "Passionate developer with expertise in modern web technologies, artificial intelligence, and machine learning. I love creating innovative solutions that bridge the gap between complex backend systems and intuitive user interfaces. With a strong foundation in both frontend and backend development, I specialize in building scalable applications using cutting-edge technologies.",
   location: "Việt Nam",
-  email: "hoangdien.dev@gmail.com",
-  phone: "+84 123 456 789",
-  website: "https://hoangdien.dev",
+  email: "nguyenhoangdien1x@gmail.com",
+  phone: "+84 944779743",
+  website: "https://github.com/Hoang-Dien-IT",
   skills: [
     "JavaScript",
     "TypeScript", 
@@ -65,10 +65,10 @@ export const mockProfile: Profile = {
     "Problem Solving"
   ],
   availability: true,
-  avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face&auto=format",
-  resume: "/files/hoangdien-cv.pdf",
+  avatar: "/anhcuatoi.jpg",
+  resume: "https://drive.google.com/file/d/1QoWI4A9RuRBHf9OoMxEXfgF4CxGki0Bm/view?usp=drive_link",
   socialLinks: {
-    github: "https://github.com/hoangdiendev",
+    github: "https://github.com/Hoang-Dien-IT",
     linkedin: "https://linkedin.com/in/hoangdiendev",
     twitter: "https://twitter.com/hoangdiendev",
     facebook: "https://facebook.com/hoangdiendev",
