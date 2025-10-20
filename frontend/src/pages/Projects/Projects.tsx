@@ -85,42 +85,69 @@ const Projects: React.FC = () => {
             animate="visible"
             className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
-            {filteredProjects.map((project) => (
+            {filteredProjects.map((project, index) => (
               <motion.div
                 key={project._id}
                 variants={itemVariants}
                 layout
-                className="group relative overflow-hidden rounded-2xl glass hover:shadow-2xl transition-all duration-500"
-                whileHover={{ y: -10 }}
+                className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-xl border border-white/10 hover:border-white/20 shadow-xl hover:shadow-2xl transition-all duration-500"
+                whileHover={{ 
+                  y: -8,
+                  scale: 1.02,
+                  transition: { duration: 0.3, ease: "easeOut" }
+                }}
+                style={{
+                  background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0.02) 100%)',
+                  boxShadow: '0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1)'
+                }}
               >
                 {/* Featured Badge */}
                 {project.featured && (
-                  <div className="absolute top-4 left-4 z-10 bg-gradient-to-r from-yellow-400 to-orange-500 text-black text-xs font-bold px-3 py-1 rounded-full">
-                    Featured
-                  </div>
+                  <motion.div 
+                    className="absolute top-6 left-6 z-10 bg-gradient-to-r from-amber-400 via-orange-500 to-red-500 text-white text-xs font-bold px-4 py-2 rounded-full shadow-lg"
+                    initial={{ scale: 0, rotate: -180 }}
+                    animate={{ scale: 1, rotate: 0 }}
+                    transition={{ delay: index * 0.1 + 0.3, duration: 0.5, type: "spring" }}
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                  >
+                    ⭐ Featured
+                  </motion.div>
                 )}
 
-                {/* Image */}
-                <div className="relative overflow-hidden">
-                  <img
+                {/* Premium Image Container */}
+                <div className="relative overflow-hidden rounded-t-3xl">
+                  <motion.img
                     src={project.images[0]}
                     alt={project.title}
-                    className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="w-full h-56 object-cover"
+                    whileHover={{ scale: 1.08 }}
+                    transition={{ duration: 0.6, ease: "easeOut" }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   
-                  {/* Overlay Buttons */}
-                  <div className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  {/* Elegant Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500" />
+                  
+                  {/* Premium Overlay Buttons */}
+                  <motion.div 
+                    className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100"
+                    initial={false}
+                    animate={{ opacity: 0 }}
+                    whileHover={{ opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                  >
                     {project.demoUrl && (
                       <motion.a
                         href={project.demoUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-white text-black px-4 py-2 rounded-full font-semibold hover:bg-gray-200 transition-colors duration-200"
-                        whileHover={{ scale: 1.05 }}
+                        className="bg-white/90 backdrop-blur-sm text-black px-6 py-3 rounded-full font-semibold shadow-lg hover:bg-white transition-all duration-300"
+                        whileHover={{ scale: 1.05, y: -2 }}
                         whileTap={{ scale: 0.95 }}
+                        initial={{ y: 20, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{ delay: 0.1 }}
                       >
-                        Live Demo
+                        🚀 Live Demo
                       </motion.a>
                     )}
                     {project.githubUrl && (
@@ -128,40 +155,50 @@ const Projects: React.FC = () => {
                         href={project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-gray-800 text-white px-4 py-2 rounded-full font-semibold hover:bg-gray-700 transition-colors duration-200"
-                        whileHover={{ scale: 1.05 }}
+                        className="bg-gray-900/90 backdrop-blur-sm text-white px-6 py-3 rounded-full font-semibold shadow-lg border border-white/20 hover:bg-gray-800 transition-all duration-300"
+                        whileHover={{ scale: 1.05, y: -2 }}
                         whileTap={{ scale: 0.95 }}
+                        initial={{ y: 20, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{ delay: 0.2 }}
                       >
-                        Code
+                        💻 Code
                       </motion.a>
                     )}
-                  </div>
+                  </motion.div>
                 </div>
 
-                {/* Content */}
-                <div className="p-6">
-                  <div className="flex items-center justify-between mb-2">
-                    <h3 className="text-xl font-bold group-hover:text-primary-400 transition-colors duration-300">
+                {/* Premium Content */}
+                <div className="p-8">
+                  <div className="flex items-center justify-between mb-4">
+                    <motion.h3 
+                      className="text-2xl font-bold text-white group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400 group-hover:bg-clip-text transition-all duration-500"
+                      whileHover={{ scale: 1.02 }}
+                    >
                       {project.title}
-                    </h3>
-                    <span className="text-xs text-gray-500 bg-gray-800 px-2 py-1 rounded">
+                    </motion.h3>
+                    <span className="text-xs text-gray-300 bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/20">
                       {project.category}
                     </span>
                   </div>
                   
-                  <p className="text-gray-400 text-sm mb-4 leading-relaxed">
+                  <p className="text-gray-300 text-sm mb-6 leading-relaxed line-clamp-3">
                     {project.description}
                   </p>
 
-                  {/* Technologies */}
+                  {/* Premium Technologies */}
                   <div className="flex flex-wrap gap-2">
-                    {project.technologies.map((tech) => (
-                      <span
+                    {project.technologies.map((tech: string, techIndex: number) => (
+                      <motion.span
                         key={tech}
-                        className="text-xs bg-primary-500/20 text-primary-300 px-2 py-1 rounded-full"
+                        className="text-xs bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-blue-300 px-3 py-1.5 rounded-full border border-blue-500/30 backdrop-blur-sm"
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: index * 0.1 + techIndex * 0.05 }}
+                        whileHover={{ scale: 1.1, backgroundColor: "rgba(59, 130, 246, 0.3)" }}
                       >
                         {tech}
-                      </span>
+                      </motion.span>
                     ))}
                   </div>
                 </div>
