@@ -1,25 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLanguage } from '../../context/LanguageContext';
+import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher';
 
 interface NavItem {
-  name: string;
+  key: string;
   href: string;
   icon?: string;
 }
 
 const navItems: NavItem[] = [
-  { name: 'Home', href: '#home' },
-  { name: 'About', href: '#about' },
-  { name: 'Skills', href: '#skills' },
-  { name: 'Experience', href: '#experience' },
-  { name: 'Projects', href: '#projects' },
-  { name: 'Contact', href: '#contact' },
+  { key: 'nav.home', href: '#home' },
+  { key: 'nav.about', href: '#about' },
+  { key: 'nav.skills', href: '#skills' },
+  { key: 'nav.experience', href: '#experience' },
+  { key: 'nav.projects', href: '#projects' },
+  { key: 'nav.contact', href: '#contact' },
 ];
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const { t } = useLanguage();
 
   // Handle scroll effect and active section detection
   useEffect(() => {
@@ -110,7 +113,7 @@ const Navbar: React.FC = () => {
             }`}>
               {navItems.map((item, index) => (
                 <motion.div
-                  key={item.name}
+                  key={item.key}
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
@@ -124,7 +127,7 @@ const Navbar: React.FC = () => {
                         : 'text-gray-300 hover:text-white hover:bg-white/10'
                     }`}
                   >
-                    <span className="relative z-10">{item.name}</span>
+                    <span className="relative z-10">{t(item.key)}</span>
                     
                     {/* Premium Active indicator */}
                     {activeSection === item.href.replace('#', '') && (
@@ -144,8 +147,11 @@ const Navbar: React.FC = () => {
             </div>
           </div>
 
-          {/* Ultra Premium CTA Buttons */}
+          {/* Language Switcher & CTA Buttons */}
           <div className="hidden md:flex items-center space-x-4">
+            {/* Language Switcher */}
+            <LanguageSwitcher />
+            
             {/* Resume Button - enhanced with glow and accessibility */}
             <motion.div
               whileHover={{ scale: 1.06 }}
@@ -164,7 +170,7 @@ const Navbar: React.FC = () => {
                   <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" aria-hidden>
                     <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
                   </svg>
-                  Resume
+                  {t('nav.resume')}
                 </span>
                 {/* Glow */}
                 <span className="absolute inset-0 rounded-full blur-lg opacity-0 transition-opacity duration-300 bg-primary-500/30 group-hover:opacity-100" aria-hidden />
@@ -226,27 +232,25 @@ const Navbar: React.FC = () => {
             className="md:hidden bg-black/95 backdrop-blur-md border-t border-white/10"
           >
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-              {navItems.map((item, index) => (
-                <motion.div
-                  key={item.name}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.3, delay: index * 0.05 }}
+            {navItems.map((item, index) => (
+              <motion.div
+                key={item.key}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.3, delay: index * 0.05 }}
+              >
+                <button
+                  onClick={() => scrollToSection(item.href)}
+                  className={`block w-full text-left px-3 py-2 rounded-md text-base font-medium transition-all duration-300 ${
+                    activeSection === item.href.replace('#', '')
+                      ? 'text-primary-400 bg-primary-500/20'
+                      : 'text-gray-300 hover:text-white hover:bg-gray-700'
+                  }`}
                 >
-                  <button
-                    onClick={() => scrollToSection(item.href)}
-                    className={`block w-full text-left px-3 py-2 rounded-md text-base font-medium transition-all duration-300 ${
-                      activeSection === item.href.replace('#', '')
-                        ? 'text-primary-400 bg-primary-500/20'
-                        : 'text-gray-300 hover:text-white hover:bg-gray-700'
-                    }`}
-                  >
-                    {item.name}
-                  </button>
-                </motion.div>
-              ))}
-              
-              {/* Mobile CTA */}
+                  {t(item.key)}
+                </button>
+              </motion.div>
+            ))}              {/* Mobile CTA */}
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}

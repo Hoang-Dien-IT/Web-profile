@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import { useLanguage } from '../../context/LanguageContext';
 
 const Home: React.FC = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isLoaded, setIsLoaded] = useState(false);
   const [displayText, setDisplayText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
+  const { t, language } = useLanguage();
 
   useEffect(() => {
     setIsLoaded(true);
@@ -19,13 +21,21 @@ const Home: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    const typingTexts = [
-      "Full Stack Developer",
-      "AI Engineer", 
-      "Data Scientist",
-      "Deep Learning Enthusiast",
-      "Backend Developer"
-    ];
+    const typingTexts = language === 'vi' 
+      ? [
+          "Lập Trình Viên Full Stack",
+          "Kỹ Sư AI", 
+          "Nhà Khoa Học Dữ Liệu",
+          "Chuyên Gia Deep Learning",
+          "Lập Trình Viên Backend"
+        ]
+      : [
+          "Full Stack Developer",
+          "AI Engineer", 
+          "Data Scientist",
+          "Deep Learning Enthusiast",
+          "Backend Developer"
+        ];
     
     const currentText = typingTexts[currentIndex];
     let charIndex = 0;
@@ -42,7 +52,7 @@ const Home: React.FC = () => {
     }, 100);
 
     return () => clearInterval(typeInterval);
-  }, [currentIndex]);
+  }, [currentIndex, language]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -140,7 +150,7 @@ const Home: React.FC = () => {
                 textShadow: '0 0 20px rgba(255, 255, 255, 0.2)'
               }}
             >
-              {"Hi, I'm".split('').map((char, index) => (
+              {t('home.greeting').split('').map((char, index) => (
                 <motion.span
                   key={index}
                   className="inline-block relative"
@@ -172,7 +182,7 @@ const Home: React.FC = () => {
                 filter: "drop-shadow(0 0 30px rgba(255, 255, 255, 0.6)) drop-shadow(0 6px 30px rgba(0, 0, 0, 1))"
               }}
             >
-              {"Nguyen Hoang Dien".split(' ').map((word, wordIndex) => (
+              {t('home.name').split(' ').map((word, wordIndex) => (
                 <motion.span
                   key={wordIndex}
                   className="inline-block mr-6"
@@ -249,9 +259,7 @@ const Home: React.FC = () => {
           whileHover={{ scale: 1.02, y: -5 }}
         >
           <span className="relative z-10">
-            I craft beautiful, responsive, and user-friendly digital experiences 
-            with modern technologies. Passionate about creating innovative solutions 
-            that make a difference.
+            {t('home.description')}
           </span>
           <span className="absolute inset-0 bg-gradient-to-r from-orange-500/10 via-blue-500/10 to-green-500/10 rounded-2xl shimmer-effect" />
         </motion.p>
@@ -285,7 +293,7 @@ const Home: React.FC = () => {
               }}
             >
               <span className="relative z-20 flex items-center text-lg">
-                {"View My Work".split('').map((char, index) => (
+                {t('home.viewWork').split('').map((char, index) => (
                   <motion.span
                     key={index}
                     className="inline-block"
@@ -408,7 +416,7 @@ const Home: React.FC = () => {
                 >
                   <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
                 </motion.svg>
-                {"Download Resume".split('').map((char, index) => (
+                {t('home.downloadResume').split('').map((char, index) => (
                   <motion.span
                     key={index}
                     className="inline-block"
@@ -500,7 +508,7 @@ const Home: React.FC = () => {
               }}
             >
               <span className="relative z-20 flex items-center text-lg">
-                {"Get In Touch".split('').map((char, index) => (
+                {t('home.getInTouch').split('').map((char, index) => (
                   <motion.span
                     key={index}
                     className="inline-block"

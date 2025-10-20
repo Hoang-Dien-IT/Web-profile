@@ -7,6 +7,7 @@ import 'aos/dist/aos.css';
 import Navbar from './components/Navbar/Navbar';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 import ParticlesBackground from './components/ParticlesBackground/ParticlesBackground';
+import { LanguageProvider } from './context/LanguageContext';
 
 // Pages as Sections
 import Home from './pages/Home/Home';
@@ -28,6 +29,7 @@ const App: React.FC = () => {
   }, []);
   
   return (
+    <LanguageProvider>
       <Router>
         <Routes>
           {/* Main Portfolio Route */}
@@ -79,6 +81,7 @@ const App: React.FC = () => {
           } />
         </Routes>
       </Router>
+    </LanguageProvider>
   );
 };
 
