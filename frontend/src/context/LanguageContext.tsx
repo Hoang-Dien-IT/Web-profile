@@ -99,7 +99,7 @@ const translations = {
     'home.greeting': 'Xin chào, tôi là',
     'home.name': 'Nguyễn Hoàng Điền',
     'home.title': 'Kỹ Sư AI',
-    'home.description': 'Tôi tạo ra những trải nghiệm số đẹp mắt, phản hồi nhanh và thân thiện với người dùng bằng các công nghệ hiện đại. Đam mê tạo ra những giải pháp sáng tạo tạo nên sự khác biệt.',
+    'home.description': 'Tôi là nguyễn Hoàng Điển là sinh viên năm cuối vừa mới ra trường',
     'home.viewWork': 'Xem Công Việc',
     'home.downloadResume': 'Tải Hồ Sơ',
     'home.getInTouch': 'Liên Hệ',
