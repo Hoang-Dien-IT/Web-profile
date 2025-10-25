@@ -17,12 +17,12 @@ const About: React.FC = () => {
       period: t('about.experience.techvision.period'),
       description: t('about.experience.techvision.description'),
     },
-    {
-      company: t('about.experience.dataflow.company'),
-      role: t('about.experience.dataflow.role'),
-      period: t('about.experience.dataflow.period'),
-      description: t('about.experience.dataflow.description'),
-    },
+    // {
+    //   company: t('about.experience.dataflow.company'),
+    //   role: t('about.experience.dataflow.role'),
+    //   period: t('about.experience.dataflow.period'),
+    //   description: t('about.experience.dataflow.description'),
+    // },
   ];
 
   return (
@@ -170,9 +170,9 @@ const About: React.FC = () => {
               {/* Elegant Stats */}
               <div className="grid grid-cols-3 gap-6 mt-8">
                 {[
-                  { number: '50+', label: t('about.projects'), color: 'from-blue-400 to-cyan-400' },
-                  { number: '4+', label: t('about.years'), color: 'from-purple-400 to-pink-400' },
-                  { number: '20+', label: t('about.clients'), color: 'from-green-400 to-emerald-400' },
+                  { number: '5+', label: t('about.projects'), color: 'from-blue-400 to-cyan-400' },
+                  { number: '3+', label: t('about.years'), color: 'from-purple-400 to-pink-400' },
+                  { number: '0+', label: t('about.clients'), color: 'from-green-400 to-emerald-400' },
                 ].map((stat, index) => (
                   <motion.div
                     key={index}

@@ -178,7 +178,7 @@ const Skills: React.FC = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 1.4 }}
           >
-            Always learning and exploring new technologies to stay ahead of the curve
+            {t('skills.footer.text')}
           </motion.p>
           
           <motion.div
@@ -186,8 +186,13 @@ const Skills: React.FC = () => {
             whileTap={{ scale: 0.95 }}
             className="inline-block"
           >
-            <button className="group relative inline-flex items-center gap-3 overflow-hidden rounded-2xl">
+            <button               onClick={() => {
+                const element = document.getElementById('contact');
+                element?.scrollIntoView({ behavior: 'smooth' });
+              }}
+             className="group relative inline-flex items-center gap-3 overflow-hidden rounded-2xl">
               {/* Premium Gradient Background */}
+              
               <div className="absolute inset-0 bg-gradient-to-r from-orange-500 via-red-500 to-purple-600 transition-all duration-500 group-hover:scale-110" />
               <div className="absolute inset-0 bg-gradient-to-r from-orange-400/90 to-red-500/90 group-hover:from-orange-500 group-hover:to-red-500 transition-all duration-300" />
               
@@ -195,8 +200,10 @@ const Skills: React.FC = () => {
               <div className="absolute inset-0 bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl" />
               
               {/* Content */}
-              <div className="relative z-10 px-8 py-4 flex items-center gap-3">
-                <span className="font-semibold text-white text-lg">Let's Build Something Together</span>
+              <div
+              
+               className="relative z-10 px-8 py-4 flex items-center gap-3">
+                <span className="font-semibold text-white text-lg">{t('skills.footer.cta')}</span>
                 <motion.svg 
                   className="w-6 h-6 text-white" 
                   fill="none" 

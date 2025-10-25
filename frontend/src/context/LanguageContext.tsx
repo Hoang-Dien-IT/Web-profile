@@ -27,7 +27,7 @@ const translations = {
     'home.greeting': "Hi, I'm",
     'home.name': 'Nguyen Hoang Dien',
     'home.title': 'AI Engineer',
-    'home.description': 'I craft beautiful, responsive, and user-friendly digital experiences with modern technologies. Passionate about creating innovative solutions that make a difference.',
+    'home.description': 'I am a final-year Computer Science student with a strong passion for Artificial Intelligence, particularly in Computer Vision and Machine Learning, and a solid foundation in computer science.',
     'home.viewWork': 'View My Work',
     'home.downloadResume': 'Download Resume',
     'home.getInTouch': 'Get In Touch',
@@ -36,7 +36,7 @@ const translations = {
     'about.title': 'About Me',
     'about.subtitle': 'Get to know me better',
     'about.story': 'My Story',
-    'about.description1': "I'm a passionate full-stack developer with over 4 years of experience creating digital solutions that make a difference. My journey started with curiosity about how websites work, and it has evolved into a deep love for crafting beautiful, functional applications.",
+    'about.description1': "I am a final-year Computer Science student with a strong passion for Artificial Intelligence, particularly in Computer Vision and Machine Learning, and a solid foundation in computer science. I aspire to join your company and contribute to building advanced and innovative solutions, applying the knowledge I have acquired to solve real-world problems. I am eager to learn and grow, with the goal of becoming a skilled AI Engineer, especially in the field of Computer Vision. I am committed to long-term collaboration and development with your company.",
     'about.location': 'Location',
     'about.email': 'Email',
     'about.availability': 'Availability',
@@ -56,6 +56,8 @@ const translations = {
     // Skills Page
     'skills.title': 'Technologies I Love',
     'skills.subtitle': 'Modern tools and technologies I use to build amazing digital experiences',
+    'skills.footer.text': 'Always learning and exploring new technologies to stay ahead of the curve',
+    'skills.footer.cta': "Let's Build Something Together",
 
     // Experience Page
     'experience.title': 'Experience',
@@ -63,14 +65,14 @@ const translations = {
     'experience.keyAchievements': 'Key Achievements',
 
     // About Experience Data
-    'about.experience.techvision.role': 'Senior Full Stack Developer',
-    'about.experience.techvision.company': 'TechVision Solutions',
-    'about.experience.techvision.period': '2023 - Present',
-    'about.experience.techvision.description': 'Leading development of enterprise-level web applications and AI-driven solutions.',
-    'about.experience.dataflow.role': 'Full Stack Developer',
-    'about.experience.dataflow.company': 'DataFlow Analytics',
-    'about.experience.dataflow.period': '2021 - 2022',
-    'about.experience.dataflow.description': 'Developed data analytics platforms and machine learning solutions for business intelligence.',
+    'about.experience.techvision.role': 'Implementation Specialist & QA Engineer',
+    'about.experience.techvision.company': 'DH Digital Solutions Company Limited',
+    'about.experience.techvision.period': '2025 - Present',
+    'about.experience.techvision.description': 'DH Solutions provides a comprehensive ecosystem of healthcare management software for the medical industry.',
+    // 'about.experience.dataflow.role': 'Full Stack Developer',
+    // 'about.experience.dataflow.company': 'DataFlow Analytics',
+    // 'about.experience.dataflow.period': '2021 - 2022',
+    // 'about.experience.dataflow.description': 'Developed data analytics platforms and machine learning solutions for business intelligence.',
 
     // Projects Page
     'projects.title': 'Projects',
@@ -97,9 +99,9 @@ const translations = {
 
     // Home Page
     'home.greeting': 'Xin chào, tôi là',
-    'home.name': 'Nguyễn Hoàng Điền',
+    'home.name': 'Nguyễn Hoàng Điển',
     'home.title': 'Kỹ Sư AI',
-    'home.description': 'Tôi là nguyễn Hoàng Điển là sinh viên năm cuối vừa mới ra trường',
+    'home.description': 'Tôi là sinh viên năm cuối ngành Khoa học máy tính, có niềm đam mê mạnh mẽ với Trí tuệ nhân tạo, đặc biệt là trong các lĩnh vực Thị giác máy tính và Học máy, cùng với nền tảng vững chắc về khoa học máy tính.',
     'home.viewWork': 'Xem Công Việc',
     'home.downloadResume': 'Tải Hồ Sơ',
     'home.getInTouch': 'Liên Hệ',
@@ -108,7 +110,7 @@ const translations = {
     'about.title': 'Giới Thiệu',
     'about.subtitle': 'Tìm hiểu thêm về tôi',
     'about.story': 'Câu Chuyện Của Tôi',
-    'about.description1': 'Tôi là một full-stack developer đầy đam mê với hơn 4 năm kinh nghiệm tạo ra các giải pháp số tạo nên sự khác biệt. Hành trình của tôi bắt đầu từ sự tò mò về cách hoạt động của website, và đã phát triển thành tình yêu sâu sắc với việc tạo ra những ứng dụng đẹp và chức năng.',
+    'about.description1': 'Tôi là sinh viên năm cuối ngành Khoa học máy tính, có niềm đam mê mạnh mẽ với Trí tuệ nhân tạo, đặc biệt là trong các lĩnh vực Thị giác máy tính và Học máy, cùng với nền tảng vững chắc về khoa học máy tính. Tôi mong muốn được gia nhập công ty của quý vị để đóng góp vào việc xây dựng các giải pháp tiên tiến và sáng tạo, áp dụng những kiến thức đã học để giải quyết các vấn đề thực tiễn. Tôi luôn khao khát được học hỏi và phát triển, với mục tiêu trở thành một kỹ sư AI giỏi, đặc biệt trong lĩnh vực Thị giác máy tính. Tôi cam kết gắn bó và phát triển lâu dài cùng công ty.',
     'about.location': 'Vị Trí',
     'about.email': 'Email',
     'about.availability': 'Tình Trạng',
@@ -128,6 +130,8 @@ const translations = {
     // Skills Page
     'skills.title': 'Công Nghệ Tôi Yêu Thích',
     'skills.subtitle': 'Các công cụ và công nghệ hiện đại tôi sử dụng để xây dựng những trải nghiệm số tuyệt vời',
+    'skills.footer.text': 'Luôn học hỏi và khám phá công nghệ mới để dẫn đầu xu hướng',
+    'skills.footer.cta': 'Hãy Cùng Xây Dựng Điều Gì Đó',
 
     // Experience Page
     'experience.title': 'Kinh Nghiệm',
@@ -135,14 +139,14 @@ const translations = {
     'experience.keyAchievements': 'Thành Tựu Chính',
 
     // About Experience Data
-    'about.experience.techvision.role': 'Lập Trình Viên Full Stack Cấp Cao',
-    'about.experience.techvision.company': 'TechVision Solutions',
-    'about.experience.techvision.period': '2023 - Hiện tại',
-    'about.experience.techvision.description': 'Dẫn dắt phát triển các ứng dụng web cấp doanh nghiệp và các giải pháp được điều khiển bởi AI.',
-    'about.experience.dataflow.role': 'Lập Trình Viên Full Stack',
-    'about.experience.dataflow.company': 'DataFlow Analytics',
-    'about.experience.dataflow.period': '2021 - 2022',
-    'about.experience.dataflow.description': 'Phát triển các nền tảng phân tích dữ liệu và các giải pháp học máy cho trí tuệ kinh doanh.',
+    'about.experience.techvision.role': 'Chuyên Viên Triển Khai & Kỹ Sư QA',
+    'about.experience.techvision.company': 'Công Ty TNHH Giải Pháp Kỹ Thuật Số DH',
+    'about.experience.techvision.period': '2025 - Hiện tại',
+    'about.experience.techvision.description': 'DH Solutions cung cấp toàn diện hệ sinh thái phần mềm quản lý khám chữa bệnh cho ngành y tế.',
+    // 'about.experience.dataflow.role': 'Lập Trình Viên Full Stack',
+    // 'about.experience.dataflow.company': 'DataFlow Analytics',
+    // 'about.experience.dataflow.period': '2021 - 2022',
+    // 'about.experience.dataflow.description': 'Phát triển các nền tảng phân tích dữ liệu và các giải pháp học máy cho trí tuệ kinh doanh.',
 
     // Projects Page
     'projects.title': 'Dự Án',

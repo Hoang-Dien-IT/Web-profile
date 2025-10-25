@@ -28,7 +28,7 @@ export const mockProfile: Profile = {
   _id: "profile-001",
   fullName: "Nguyễn Hoàng Điển",
   title: "Full Stack Developer & AI Engineer",
-  bio: "Passionate developer with expertise in modern web technologies, artificial intelligence, and machine learning. I love creating innovative solutions that bridge the gap between complex backend systems and intuitive user interfaces. With a strong foundation in both frontend and backend development, I specialize in building scalable applications using cutting-edge technologies.",
+  bio: "",
   location: "Việt Nam",
   email: "nguyenhoangdien1x@gmail.com",
   phone: "+84 944779743",
