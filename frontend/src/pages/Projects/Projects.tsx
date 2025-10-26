@@ -1,13 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { mockProjects } from '../../data/mockProjects';
 
 const Projects: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState('All');
+  const [imageIndices, setImageIndices] = useState<{[key: string]: number}>({});
 
   const projects = mockProjects;
 
-  const categories = ['All', 'Web App', 'Mobile App', 'Frontend', 'Backend'];
+  // Auto-rotate images every 1 second
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setImageIndices(prevIndices => {
+        const newIndices = { ...prevIndices };
+        projects.forEach(project => {
+          if (project.images.length > 1) {
+            const currentIndex = newIndices[project._id] || 0;
+            newIndices[project._id] = (currentIndex + 1) % project.images.length;
+          }
+        });
+        return newIndices;
+      });
+    }, 3000); // Change image every 1 second
+
+    return () => clearInterval(interval);
+  }, [projects]);
+
+  const categories = ['All', 'AI-powered website', "AI Model", 'Frontend', 'Backend'];
 
   const filteredProjects = activeFilter === 'All' 
     ? projects 
@@ -114,15 +133,43 @@ const Projects: React.FC = () => {
                   </motion.div>
                 )}
 
-                {/* Premium Image Container */}
+                {/* Premium Image Container with Slideshow */}
                 <div className="relative overflow-hidden rounded-t-3xl">
-                  <motion.img
-                    src={project.images[0]}
-                    alt={project.title}
-                    className="w-full h-56 object-cover"
-                    whileHover={{ scale: 1.08 }}
-                    transition={{ duration: 0.6, ease: "easeOut" }}
-                  />
+                  <AnimatePresence mode="wait">
+                    <motion.img
+                      key={`${project._id}-${imageIndices[project._id] || 0}`}
+                      src={project.images[imageIndices[project._id] || 0]}
+                      alt={project.title}
+                      className="w-full h-56 object-cover"
+                      initial={{ opacity: 0, scale: 1.1 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.9 }}
+                      transition={{ duration: 0.5, ease: "easeOut" }}
+                      whileHover={{ scale: 1.08 }}
+                    />
+                  </AnimatePresence>
+
+                  {/* Image Indicators */}
+                  {project.images.length > 1 && (
+                    <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                      {project.images.map((_, imgIndex) => (
+                        <motion.div
+                          key={imgIndex}
+                          className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                            (imageIndices[project._id] || 0) === imgIndex
+                              ? 'bg-white shadow-lg scale-125'
+                              : 'bg-white/50'
+                          }`}
+                          whileHover={{ scale: 1.2 }}
+                          onClick={() => setImageIndices(prev => ({
+                            ...prev,
+                            [project._id]: imgIndex
+                          }))}
+                          style={{ cursor: 'pointer' }}
+                        />
+                      ))}
+                    </div>
+                  )}
                   
                   {/* Elegant Gradient Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500" />
