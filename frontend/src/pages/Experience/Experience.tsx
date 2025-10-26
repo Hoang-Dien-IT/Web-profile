@@ -6,7 +6,22 @@ import { useLanguage } from '../../context/LanguageContext';
 const Experience: React.FC = () => {
   const { t } = useLanguage();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const experiences = mockExperiences;
+  
+  // Get translated experience data
+  const getTranslatedExperiences = () => {
+    return mockExperiences.map(exp => ({
+      ...exp,
+      company: t(`exp.${exp._id.split('-')[1]}.company`),
+      position: t(`exp.${exp._id.split('-')[1]}.position`),
+      location: t(`exp.${exp._id.split('-')[1]}.location`),
+      description: t(`exp.${exp._id.split('-')[1]}.description`),
+      achievements: exp.achievements.map((_, index) => 
+        t(`exp.${exp._id.split('-')[1]}.achievement${index + 1}`)
+      )
+    }));
+  };
+  
+  const experiences = getTranslatedExperiences();
 
   // Track mouse for premium effects
   useEffect(() => {

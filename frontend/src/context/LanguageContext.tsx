@@ -63,6 +63,27 @@ const translations = {
     'experience.title': 'Experience',
     'experience.subtitle': 'My professional journey',
     'experience.keyAchievements': 'Key Achievements',
+    
+    // Experience Data - Job 1
+    'exp.001.company': 'DH Digital Solutions Company Limited',
+    'exp.001.position': 'Implementation Specialist & QA Engineer',
+    'exp.001.location': 'Can Tho City, Vietnam',
+    'exp.001.description': 'DH Solutions provides a comprehensive ecosystem of healthcare management software for the medical industry.',
+    'exp.001.achievement1': 'Able to document and design hospital medical examination and treatment workflows.',
+    'exp.001.achievement2': 'Understand the functions and usage of modules in the HIS (Hospital Information System) software.',
+    'exp.001.achievement3': 'Deploy modules into real hospital environments.',
+    'exp.001.achievement4': 'Provide support for multiple partners and clients.',
+    
+    // Experience Data - Job 2
+    'exp.002.company': 'Can Tho University',
+    'exp.002.position': 'Full Stack Developer And AI Engineer',
+    'exp.002.location': 'Can Tho City, Vietnam',
+    'exp.002.description': 'Focused on continuous learning and self-development, particularly in computer science fields related to image and data processing. Engaged in multiple deep learning projects to strengthen technical and analytical skills.',
+    'exp.002.achievement1': 'Developed a football player recognition website using a CNN model with approximately 90% accuracy.',
+    'exp.002.achievement2': 'Developed a web-based system to help users check drug interactions.',
+    'exp.002.achievement3': 'Developed a camera management system integrated with a stranger detection model for IP cameras.',
+    'exp.002.achievement4': 'Developed a Windows-based human resource management system using C#.',
+    'exp.002.achievement5': 'Developed a small web application for online book borrowing management.',
 
     // About Experience Data
     'about.experience.techvision.role': 'Implementation Specialist & QA Engineer',
@@ -137,6 +158,27 @@ const translations = {
     'experience.title': 'Kinh Nghiệm',
     'experience.subtitle': 'Hành trình nghề nghiệp của tôi',
     'experience.keyAchievements': 'Thành Tựu Chính',
+    
+    // Experience Data - Job 1
+    'exp.001.company': 'Công Ty TNHH Giải Pháp Số DH',
+    'exp.001.position': 'Chuyên Viên Triển Khai & Kỹ Sư QA',
+    'exp.001.location': 'Thành phố Cần Thơ, Việt Nam',
+    'exp.001.description': 'DH Solutions cung cấp hệ sinh thái phần mềm quản lý y tế toàn diện cho ngành y tế.',
+    'exp.001.achievement1': 'Có khả năng tài liệu hóa và thiết kế quy trình khám chữa bệnh tại bệnh viện.',
+    'exp.001.achievement2': 'Hiểu biết về chức năng và cách sử dụng các module trong phần mềm HIS (Hệ thống thông tin bệnh viện).',
+    'exp.001.achievement3': 'Triển khai các module vào môi trường bệnh viện thực tế.',
+    'exp.001.achievement4': 'Cung cấp hỗ trợ cho nhiều đối tác và khách hàng.',
+    
+    // Experience Data - Job 2
+    'exp.002.company': 'Đại Học Cần Thơ',
+    'exp.002.position': 'Lập Trình Viên Full Stack & Kỹ Sư AI',
+    'exp.002.location': 'Thành phố Cần Thơ, Việt Nam',
+    'exp.002.description': 'Tập trung vào học tập liên tục và phát triển bản thân, đặc biệt trong các lĩnh vực khoa học máy tính liên quan đến xử lý hình ảnh và dữ liệu. Tham gia nhiều dự án học sâu để tăng cường kỹ năng kỹ thuật và phân tích.',
+    'exp.002.achievement1': 'Phát triển website nhận diện cầu thủ bóng đá sử dụng mô hình CNN với độ chính xác khoảng 90%.',
+    'exp.002.achievement2': 'Phát triển hệ thống web giúp người dùng kiểm tra tương tác thuốc.',
+    'exp.002.achievement3': 'Phát triển hệ thống quản lý camera tích hợp mô hình phát hiện người lạ cho camera IP.',
+    'exp.002.achievement4': 'Phát triển hệ thống quản lý nhân sự trên Windows sử dụng C#.',
+    'exp.002.achievement5': 'Phát triển ứng dụng web nhỏ quản lý mượn sách trực tuyến.',
 
     // About Experience Data
     'about.experience.techvision.role': 'Chuyên Viên Triển Khai & Kỹ Sư QA',

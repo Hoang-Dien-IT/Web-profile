@@ -21,11 +21,11 @@ export interface Project {
 export const mockProjects: Project[] = [
   {
     _id: "project-001",
-    title: "AI-Powered E-Commerce Platform",
-    description: "A modern e-commerce platform with AI-driven product recommendations and intelligent inventory management.",
-    longDescription: "Developed a comprehensive e-commerce solution featuring machine learning algorithms for personalized product recommendations, automated inventory management, and real-time analytics dashboard. The platform uses advanced AI to predict customer behavior and optimize sales strategies.",
-    technologies: ["React", "Node.js", "Python", "TensorFlow", "MongoDB", "Redis", "AWS"],
-    category: "Full Stack",
+    title: "Web Drugs Interaction Checker",
+    description: "A web application that checks for potential drug interactions using a comprehensive database.",
+    longDescription: "Developed a web application that allows users to input multiple medications and checks for potential interactions using a comprehensive database. The application provides detailed information about each drug, including side effects, contraindications, and alternative medications.",
+    technologies: ["React", "Node.js", "Express", "MongoDB"],
+    category: "Web App",
     status: "completed",
     featured: true,
     images: [
@@ -60,7 +60,7 @@ export const mockProjects: Project[] = [
     status: "completed",
     featured: true,
     images: [
-      "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&h=600&fit=crop&crop=entropy&auto=format",
+      // "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&h=600&fit=crop&crop=entropy&auto=format",
       "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop&crop=entropy&auto=format"
     ],
     demoUrl: "https://smart-tasks-demo.vercel.app",
