@@ -70,8 +70,8 @@ export const mockProjects: Project[] = [
       "/images/projects2/images_7.jpg",
       "/images/projects2/images_8.jpg"
     ],
-    demoUrl: "https://smart-tasks-demo.vercel.app",
-    githubUrl: "https://github.com/hoangdiendev/smart-tasks",
+    // demoUrl: "https://smart-tasks-demo.vercel.app",
+    githubUrl: "https://github.com/Hoang-Dien-IT/Stranger-detection-system-using-camera.git",
     startDate: "2023-09-01T00:00:00.000Z",
     endDate: "2023-12-15T00:00:00.000Z",
     challenges: [
@@ -102,8 +102,8 @@ export const mockProjects: Project[] = [
       "/images/projects3/images_3.jpg",
       "/images/projects3/images_4.jpg"
     ],
-    demoUrl: "https://website-identifies-football-players.vercel.app",
-    githubUrl: "https://github.com/hoangdiendev/website-identifies-football-players",
+    // demoUrl: "https://website-identifies-football-players.vercel.app",
+    githubUrl: "https://github.com/Hoang-Dien-IT/Webmin-identifies-football-players.git",
     startDate: "2024-08-01T00:00:00.000Z",
     challenges: [
       "Handling high concurrent connections",
@@ -133,8 +133,8 @@ export const mockProjects: Project[] = [
       "/images/projects4/images_3.jpg",
       "/images/projects4/images_4.jpg"
     ],
-    demoUrl: "https://data-dashboard-demo.vercel.app",
-    githubUrl: "https://github.com/hoangdiendev/data-dashboard",
+    // demoUrl: "https://data-dashboard-demo.vercel.app",
+    githubUrl: "https://github.com/Hoang-Dien-IT/HRM_System_Winform.git",
     startDate: "2023-05-01T00:00:00.000Z",
     endDate: "2023-08-30T00:00:00.000Z",
     challenges: [
@@ -166,7 +166,7 @@ export const mockProjects: Project[] = [
       "/images/projects5/images_4.jpg",
       "/images/projects5/images_5.jpg"
     ],
-    githubUrl: "https://github.com/hoangdiendev/iot-monitoring",
+    githubUrl: "https://github.com/Hoang-Dien-IT/Lung_disease_classification_from_X-ray_images_using_CNN_model.git",
     startDate: "2024-11-01T00:00:00.000Z",
     challenges: [
       "Handling high-frequency sensor data",
@@ -196,7 +196,7 @@ export const mockProjects: Project[] = [
       "/images/projects6/images_3.png",
       "/images/projects6/images_4.png"
     ],
-    githubUrl: "https://github.com/hoangdiendev/iot-monitoring",
+    githubUrl: "https://github.com/Hoang-Dien-IT/Web-profile.git",
     startDate: "2024-11-01T00:00:00.000Z",
     challenges: [
       "Handling high-frequency sensor data",
