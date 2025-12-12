@@ -15,7 +15,7 @@ const navItems: NavItem[] = [
   { key: 'nav.skills', href: '#skills' },
   { key: 'nav.experience', href: '#experience' },
   { key: 'nav.projects', href: '#projects' },
-  { key: 'nav.contact', href: '#contact' },
+  // { key: 'nav.contact', href: '#contact' },
 ];
 
 const Navbar: React.FC = () => {
@@ -159,7 +159,7 @@ const Navbar: React.FC = () => {
               className="relative"
             >
               <a
-                href="https://drive.google.com/file/d/1QoWI4A9RuRBHf9OoMxEXfgF4CxGki0Bm/view?usp=drive_link"
+                href="https://drive.google.com/file/d/1jyKuGb5K38kM3LD7iZWvrz7hBLV4x7ed/view?usp=drive_link"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Open resume in Google Drive (opens in a new tab)"
