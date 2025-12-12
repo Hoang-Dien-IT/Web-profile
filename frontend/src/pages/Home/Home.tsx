@@ -388,7 +388,7 @@ const Home: React.FC = () => {
             style={{ transformStyle: 'preserve-3d' }}
           >
             <motion.a
-              href="https://drive.google.com/file/d/1QoWI4A9RuRBHf9OoMxEXfgF4CxGki0Bm/view?usp=drive_link"
+              href="https://drive.google.com/file/d/1jyKuGb5K38kM3LD7iZWvrz7hBLV4x7ed/view?usp=drive_link"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Open resume in Google Drive (opens in a new tab)"
