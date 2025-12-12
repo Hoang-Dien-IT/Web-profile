@@ -15,7 +15,7 @@ import About from './pages/About/About';
 import Skills from './pages/Skills/Skills';
 import Experience from './pages/Experience/Experience';
 import Projects from './pages/Projects/Projects';
-import Contact from './pages/Contact/Contact';
+
 
 const App: React.FC = () => {
   // Initialize AOS
@@ -63,9 +63,9 @@ const App: React.FC = () => {
                   <Projects />
                 </section>
                 
-                <section id="contact" className="min-h-screen">
+                {/* <section id="contact" className="min-h-screen">
                   <Contact />
-                </section>
+                </section> */}
               </main>
               
               {/* Scroll to Top */}

@@ -8,7 +8,7 @@ import About from '../pages/About/About';
 import Projects from '../pages/Projects/Projects';
 import Skills from '../pages/Skills/Skills';
 import Experience from '../pages/Experience/Experience';
-import Contact from '../pages/Contact/Contact';
+// import Contact from '../pages/Contact/Contact';
 
 // Animation component wrapper
 const PageWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => (
@@ -70,14 +70,6 @@ const AnimatedRoutes: React.FC = () => {
           element={
             <PageWrapper>
               <Experience />
-            </PageWrapper>
-          } 
-        />
-        <Route 
-          path="/contact" 
-          element={
-            <PageWrapper>
-              <Contact />
             </PageWrapper>
           } 
         />

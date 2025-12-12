@@ -1,12 +1,83 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { mockProjects } from '../../data/mockProjects';
+import { mockProjects, Project } from '../../data/mockProjects';
+import { useLanguage } from '../../context/LanguageContext';
 
 const Projects: React.FC = () => {
+  const { t, language } = useLanguage();
   const [activeFilter, setActiveFilter] = useState('All');
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalImageIndex, setModalImageIndex] = useState(0);
+
+  // Helper function to get translated project data
+  const getTranslatedProject = (project: Project) => {
+    const projectKey = project._id.replace('project-', '').replace('001', 'drug-checker').replace('002', 'safeface').replace('003', 'football').replace('004', 'hrm').replace('005', 'lung').replace('006', 'portfolio');
+    return {
+      ...project,
+      title: t(`project.${projectKey}.title`),
+      description: t(`project.${projectKey}.description`),
+      longDescription: t(`project.${projectKey}.longDescription`),
+      category: t(`project.${projectKey}.category`)
+    };
+  };
   const [imageIndices, setImageIndices] = useState<{[key: string]: number}>({});
 
   const projects = mockProjects;
+
+  // Handle modal functions
+  const openModal = (project: Project) => {
+    const translatedProject = getTranslatedProject(project);
+    setSelectedProject(translatedProject);
+    setModalImageIndex(0);
+    setIsModalOpen(true);
+    document.body.style.overflow = 'hidden';
+  };
+
+  // Update selected project when language changes
+  useEffect(() => {
+    if (selectedProject && isModalOpen) {
+      const originalProject = projects.find(p => p._id === selectedProject._id);
+      if (originalProject) {
+        const updatedProject = getTranslatedProject(originalProject);
+        setSelectedProject(updatedProject);
+      }
+    }
+  }, [language, selectedProject, isModalOpen, projects]);
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedProject(null);
+    document.body.style.overflow = 'auto';
+  };
+
+  const nextImage = () => {
+    if (selectedProject && selectedProject.images.length > 1) {
+      setModalImageIndex((prev) => (prev + 1) % selectedProject.images.length);
+    }
+  };
+
+  const prevImage = () => {
+    if (selectedProject && selectedProject.images.length > 1) {
+      setModalImageIndex((prev) => (prev - 1 + selectedProject.images.length) % selectedProject.images.length);
+    }
+  };
+
+  // Reset filter to default when language changes
+  useEffect(() => {
+    setActiveFilter('All');
+  }, [language]);
+
+  // Update selected project when language changes
+  useEffect(() => {
+    if (selectedProject && isModalOpen) {
+      const originalProject = projects.find(p => p._id === selectedProject._id);
+      if (originalProject) {
+        const updatedProject = getTranslatedProject(originalProject);
+        setSelectedProject(updatedProject);
+      }
+    }
+  }, [language, selectedProject, isModalOpen, projects]);
 
   // Auto-rotate images every 1 second
   useEffect(() => {
@@ -26,11 +97,17 @@ const Projects: React.FC = () => {
     return () => clearInterval(interval);
   }, [projects]);
 
-  const categories = ['All', 'AI-powered website', "AI Model", 'Frontend', 'Backend'];
+  const categories = ['All', 'AI-powered website', "AI Model", 'Frontend', 'Backend', 'System'];
+
+  // Get translated projects
+  const translatedProjects = projects.map(getTranslatedProject);
 
   const filteredProjects = activeFilter === 'All' 
-    ? projects 
-    : projects.filter(project => project.category === activeFilter);
+    ? translatedProjects 
+    : translatedProjects.filter(project => {
+        const originalProject = projects.find(p => p._id === project._id);
+        return originalProject?.category === activeFilter;
+      });
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -64,10 +141,10 @@ const Projects: React.FC = () => {
           className="text-center mb-16"
         >
           <h1 className="text-4xl md:text-6xl font-bold mb-4">
-            My <span className="gradient-text">Projects</span>
+            <span className="gradient-text">{t('projects.title')}</span>
           </h1>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            A collection of projects that showcase my skills and passion for development
+            {t('projects.subtitle')}
           </p>
         </motion.div>
 
@@ -90,7 +167,7 @@ const Projects: React.FC = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              {category}
+              {category === 'All' ? t('projects.filterAll') : category}
             </motion.button>
           ))}
         </motion.div>
@@ -109,12 +186,13 @@ const Projects: React.FC = () => {
                 key={project._id}
                 variants={itemVariants}
                 layout
-                className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-xl border border-white/10 hover:border-white/20 shadow-xl hover:shadow-2xl transition-all duration-500"
+                className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-xl border border-white/10 hover:border-white/20 shadow-xl hover:shadow-2xl transition-all duration-500 cursor-pointer"
                 whileHover={{ 
                   y: -8,
                   scale: 1.02,
                   transition: { duration: 0.3, ease: "easeOut" }
                 }}
+                onClick={() => openModal(project)}
                 style={{
                   background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0.02) 100%)',
                   boxShadow: '0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1)'
@@ -129,7 +207,7 @@ const Projects: React.FC = () => {
                     transition={{ delay: index * 0.1 + 0.3, duration: 0.5, type: "spring" }}
                     whileHover={{ scale: 1.1, rotate: 5 }}
                   >
-                    ⭐ Featured
+                    {t('projects.featured')}
                   </motion.div>
                 )}
 
@@ -152,7 +230,7 @@ const Projects: React.FC = () => {
                   {/* Image Indicators */}
                   {project.images.length > 1 && (
                     <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-                      {project.images.map((_, imgIndex) => (
+                      {project.images.map((_: string, imgIndex: number) => (
                         <motion.div
                           key={imgIndex}
                           className={`w-2 h-2 rounded-full transition-all duration-300 ${
@@ -182,19 +260,34 @@ const Projects: React.FC = () => {
                     whileHover={{ opacity: 1 }}
                     transition={{ duration: 0.3 }}
                   >
+                    <motion.button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        openModal(project);
+                      }}
+                      className="bg-white/90 backdrop-blur-sm text-black px-6 py-3 rounded-full font-semibold shadow-lg hover:bg-white transition-all duration-300"
+                      whileHover={{ scale: 1.05, y: -2 }}
+                      whileTap={{ scale: 0.95 }}
+                      initial={{ y: 20, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      transition={{ delay: 0.1 }}
+                    >
+                      {t('projects.viewDetails')}
+                    </motion.button>
                     {project.demoUrl && (
                       <motion.a
                         href={project.demoUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-white/90 backdrop-blur-sm text-black px-6 py-3 rounded-full font-semibold shadow-lg hover:bg-white transition-all duration-300"
+                        onClick={(e) => e.stopPropagation()}
+                        className="bg-blue-500/90 backdrop-blur-sm text-white px-6 py-3 rounded-full font-semibold shadow-lg hover:bg-blue-600 transition-all duration-300"
                         whileHover={{ scale: 1.05, y: -2 }}
                         whileTap={{ scale: 0.95 }}
                         initial={{ y: 20, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
-                        transition={{ delay: 0.1 }}
+                        transition={{ delay: 0.2 }}
                       >
-                        🚀 Live Demo
+                        {t('projects.liveDemo')}
                       </motion.a>
                     )}
                     {project.githubUrl && (
@@ -202,14 +295,15 @@ const Projects: React.FC = () => {
                         href={project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
                         className="bg-gray-900/90 backdrop-blur-sm text-white px-6 py-3 rounded-full font-semibold shadow-lg border border-white/20 hover:bg-gray-800 transition-all duration-300"
                         whileHover={{ scale: 1.05, y: -2 }}
                         whileTap={{ scale: 0.95 }}
                         initial={{ y: 20, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
-                        transition={{ delay: 0.2 }}
+                        transition={{ delay: 0.3 }}
                       >
-                        💻 Code
+                        {t('projects.code')}
                       </motion.a>
                     )}
                   </motion.div>
@@ -263,20 +357,216 @@ const Projects: React.FC = () => {
         >
           <div className="glass rounded-2xl p-8 max-w-2xl mx-auto">
             <h3 className="text-2xl font-bold mb-4 gradient-text">
-              Interested in Working Together?
+              {t('projects.ctaTitle')}
             </h3>
             <p className="text-gray-400 mb-6">
-              I'm always excited to work on new projects and collaborate with amazing people.
+              {t('projects.ctaSubtitle')}
             </p>
-            <motion.button
+            {/* <motion.button
               className="bg-gradient-to-r from-primary-500 to-purple-500 text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              Let's Discuss Your Project
-            </motion.button>
+              {t('projects.ctaButton')}
+            </motion.button> */}
           </div>
         </motion.div>
+
+        {/* Project Detail Modal */}
+        <AnimatePresence>
+          {isModalOpen && selectedProject && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md"
+              onClick={closeModal}
+            >
+              <motion.div
+                initial={{ scale: 0.8, opacity: 0, y: 50 }}
+                animate={{ scale: 1, opacity: 1, y: 0 }}
+                exit={{ scale: 0.8, opacity: 0, y: 50 }}
+                transition={{ type: "spring", duration: 0.5 }}
+                className="bg-gradient-to-br from-gray-900/95 to-black/95 backdrop-blur-xl rounded-3xl overflow-hidden max-w-6xl w-full max-h-[90vh] overflow-y-auto border border-white/20 shadow-2xl"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {/* Header */}
+                <div className="relative p-8 border-b border-white/10">
+                  <button
+                    onClick={closeModal}
+                    className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all duration-300 group"
+                  >
+                    <svg className="w-6 h-6 text-white group-hover:rotate-90 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                  
+                  <div className="flex flex-col lg:flex-row lg:items-center gap-6">
+                    <div className="flex-1">
+                      <h2 className="text-3xl lg:text-4xl font-bold gradient-text mb-3">
+                        {selectedProject.title}
+                      </h2>
+                      <div className="flex flex-wrap gap-3">
+                        <span className="bg-primary-500/20 text-primary-300 px-4 py-2 rounded-full text-sm font-medium">
+                          {selectedProject.category}
+                        </span>
+                        {selectedProject.featured && (
+                          <span className="bg-gradient-to-r from-amber-400 to-orange-500 text-white px-4 py-2 rounded-full text-sm font-bold">
+                            {t('projects.featured')}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                    
+                    {/* Action Buttons */}
+                    <div className="flex gap-4">
+                      {selectedProject.demoUrl && (
+                        <motion.a
+                          href={selectedProject.demoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white px-6 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                          {t('projects.liveDemo')}
+                        </motion.a>
+                      )}
+                      {selectedProject.githubUrl && (
+                        <motion.a
+                          href={selectedProject.githubUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2 bg-gray-700 hover:bg-gray-600 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                          </svg>
+                          {t('projects.code')}
+                        </motion.a>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div className="p-8">
+                  <div className="grid lg:grid-cols-2 gap-8">
+                    {/* Image Gallery */}
+                    <div className="space-y-6">
+                      <div className="relative rounded-2xl overflow-hidden bg-black/20">
+                        <AnimatePresence mode="wait">
+                          <motion.img
+                            key={modalImageIndex}
+                            src={selectedProject.images[modalImageIndex]}
+                            alt={selectedProject.title}
+                            className="w-full h-64 lg:h-80 object-cover"
+                            initial={{ opacity: 0, x: 100 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: -100 }}
+                            transition={{ duration: 0.3 }}
+                          />
+                        </AnimatePresence>
+                        
+                        {/* Navigation Arrows */}
+                        {selectedProject.images.length > 1 && (
+                          <>
+                            <button
+                              onClick={prevImage}
+                              className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 hover:bg-black/70 flex items-center justify-center transition-all duration-300 group"
+                            >
+                              <svg className="w-6 h-6 text-white group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                              </svg>
+                            </button>
+                            <button
+                              onClick={nextImage}
+                              className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 hover:bg-black/70 flex items-center justify-center transition-all duration-300 group"
+                            >
+                              <svg className="w-6 h-6 text-white group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                              </svg>
+                            </button>
+                          </>
+                        )}
+                        
+                        {/* Image Counter */}
+                        <div className="absolute bottom-4 right-4 bg-black/70 text-white px-3 py-1 rounded-full text-sm">
+                          {modalImageIndex + 1} / {selectedProject.images.length}
+                        </div>
+                      </div>
+                      
+                      {/* Thumbnail Gallery */}
+                      {selectedProject.images.length > 1 && (
+                        <div className="flex gap-3 overflow-x-auto pb-2">
+                          {selectedProject.images.map((img, index) => (
+                            <motion.button
+                              key={index}
+                              onClick={() => setModalImageIndex(index)}
+                              className={`flex-shrink-0 w-20 h-16 rounded-lg overflow-hidden border-2 transition-all duration-300 ${
+                                index === modalImageIndex ? 'border-primary-500' : 'border-white/20 hover:border-white/40'
+                              }`}
+                              whileHover={{ scale: 1.05 }}
+                              whileTap={{ scale: 0.95 }}
+                            >
+                              <img src={img} alt={`${selectedProject.title} ${index + 1}`} className="w-full h-full object-cover" />
+                            </motion.button>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Project Info */}
+                    <div className="space-y-6">
+                      {/* Description */}
+                      <div>
+                        <h3 className="text-xl font-bold text-white mb-3">{t('projects.modal.description')}</h3>
+                        <p className="text-gray-300 leading-relaxed">
+                          {selectedProject.longDescription || selectedProject.description}
+                        </p>
+                      </div>
+
+                      {/* Technologies */}
+                      <div>
+                        <h3 className="text-xl font-bold text-white mb-3">{t('projects.modal.technologies')}</h3>
+                        <div className="flex flex-wrap gap-2">
+                          {selectedProject.technologies.map((tech, index) => (
+                            <motion.span
+                              key={tech}
+                              className="bg-gradient-to-r from-primary-500/20 to-purple-500/20 text-primary-300 px-4 py-2 rounded-full text-sm font-medium border border-primary-500/30"
+                              initial={{ opacity: 0, scale: 0.8 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              transition={{ delay: index * 0.1 }}
+                            >
+                              {tech}
+                            </motion.span>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Additional Info */}
+                      <div className="grid grid-cols-2 gap-4">
+                        <div className="bg-white/5 rounded-xl p-4">
+                          <h4 className="text-sm font-semibold text-gray-400 mb-1">{t('projects.modal.category')}</h4>
+                          <p className="text-white">{selectedProject.category}</p>
+                        </div>
+                        <div className="bg-white/5 rounded-xl p-4">
+                          <h4 className="text-sm font-semibold text-gray-400 mb-1">{t('projects.modal.status')}</h4>
+                          <p className="text-green-400">{t('projects.modal.completed')}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   );

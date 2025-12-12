@@ -95,10 +95,6 @@ const translations = {
     // 'about.experience.dataflow.period': '2021 - 2022',
     // 'about.experience.dataflow.description': 'Developed data analytics platforms and machine learning solutions for business intelligence.',
 
-    // Projects Page
-    'projects.title': 'Projects',
-    'projects.subtitle': 'Things I\'ve built',
-
     // Contact Page
     'contact.title': 'Get In Touch',
     'contact.subtitle': 'Let\'s work together',
@@ -106,6 +102,56 @@ const translations = {
     'contact.email': 'Email',
     'contact.message': 'Message',
     'contact.send': 'Send Message',
+
+    // Project Data
+    'project.drug-checker.title': 'Web Drugs Interaction Checker',
+    'project.drug-checker.description': 'A web application that checks for potential drug interactions using a comprehensive database.',
+    'project.drug-checker.longDescription': 'Developed a web application that allows users to input multiple medications and checks for potential interactions using a comprehensive database. The application provides detailed information about each drug, including side effects, contraindications, and alternative medications.',
+    'project.drug-checker.category': 'AI-powered website',
+    
+    'project.safeface.title': 'Stranger detection system using camera-IP: SafeFace',
+    'project.safeface.description': 'The SafeFace project is an automated management and monitoring system using surveillance cameras and a processing pipeline that employs RetinaFace and ArcFace models for human face detection and recognition.',
+    'project.safeface.longDescription': 'Built a comprehensive task management system that uses machine learning to analyze work patterns and suggest optimal task prioritization. Features include smart notifications, productivity tracking, team collaboration tools, and detailed analytics dashboards.',
+    'project.safeface.category': 'AI-powered website',
+    
+    'project.football.title': 'Website identifies football players',
+    'project.football.description': 'The project involves building a CNN model and training it on self-collected data. The website allows users to recognize famous English Premier League football players through uploaded facial images of the players.',
+    'project.football.longDescription': 'Developed a comprehensive platform that leverages machine learning and computer vision techniques to identify football players in live video feeds. The system provides real-time analytics and insights into player performance and tactics.',
+    'project.football.category': 'AI-powered website',
+    
+    'project.hrm.title': 'HRM System Winform',
+    'project.hrm.description': 'The project helps users manage human resources more easily and is built as a Windows application.',
+    'project.hrm.longDescription': 'Created a comprehensive analytics platform that processes large datasets and provides interactive visualizations, automated reporting, and predictive analytics using machine learning algorithms. Designed for business intelligence and data-driven decision making.',
+    'project.hrm.category': 'System',
+    
+    'project.lung.title': 'Lung disease classification from X-ray images',
+    'project.lung.description': 'An AI model for classifying lung diseases from X-ray images using a CNN architecture with well-preprocessed data.',
+    'project.lung.longDescription': 'Developed a deep learning model using convolutional neural networks (CNN) to classify lung diseases from X-ray images. The system provides accurate predictions and insights to assist radiologists in diagnosing lung conditions.',
+    'project.lung.category': 'AI Model',
+    
+    'project.portfolio.title': 'Web Portfolio',
+    'project.portfolio.description': 'A personal portfolio website showcasing my projects and skills.',
+    'project.portfolio.longDescription': 'This portfolio website is built using modern web technologies and showcases my work, skills, and experiences in a visually appealing manner.',
+    'project.portfolio.category': 'Frontend',
+
+    // Projects Page
+    'projects.title': 'Projects',
+    'projects.subtitle': 'A collection of projects that showcase my skills and passion for development',
+    'projects.filterAll': 'All',
+    'projects.liveDemo': '🚀 Live Demo',
+    'projects.code': '💻 Code',
+    'projects.featured': '⭐ Featured',
+    'projects.ctaTitle': 'Interested in Working Together?',
+    'projects.ctaSubtitle': 'I\'m always excited to work on new projects and collaborate with amazing people.',
+    'projects.ctaButton': 'Let\'s Discuss Your Project',
+    'projects.viewDetails': 'View Details',
+    'projects.modal.description': 'Description',
+    'projects.modal.technologies': 'Technologies Used',
+    'projects.modal.category': 'Category',
+    'projects.modal.status': 'Status',
+    'projects.modal.completed': 'Completed',
+    'projects.modal.features': 'Key Features',
+    'projects.modal.gallery': 'Project Gallery',
   },
   vi: {
     // Navigation
@@ -190,10 +236,6 @@ const translations = {
     // 'about.experience.dataflow.period': '2021 - 2022',
     // 'about.experience.dataflow.description': 'Phát triển các nền tảng phân tích dữ liệu và các giải pháp học máy cho trí tuệ kinh doanh.',
 
-    // Projects Page
-    'projects.title': 'Dự Án',
-    'projects.subtitle': 'Những thứ tôi đã xây dựng',
-
     // Contact Page
     'contact.title': 'Liên Hệ',
     'contact.subtitle': 'Hãy cùng làm việc',
@@ -201,6 +243,56 @@ const translations = {
     'contact.email': 'Email',
     'contact.message': 'Tin Nhắn',
     'contact.send': 'Gửi Tin Nhắn',
+
+    // Project Data
+    'project.drug-checker.title': 'Website Kiểm Tra Tương Tác Thuốc',
+    'project.drug-checker.description': 'Ứng dụng web kiểm tra tương tác thuốc tiềm ẩn sử dụng cơ sở dữ liệu toàn diện.',
+    'project.drug-checker.longDescription': 'Phát triển ứng dụng web cho phép người dùng nhập nhiều loại thuốc và kiểm tra tương tác tiềm ẩn bằng cơ sở dữ liệu toàn diện. Ứng dụng cung cấp thông tin chi tiết về từng loại thuốc, bao gồm tác dụng phụ, chống chỉ định và thuốc thay thế.',
+    'project.drug-checker.category': 'Website AI',
+    
+    'project.safeface.title': 'Hệ thống phát hiện người lạ bằng camera-IP: SafeFace',
+    'project.safeface.description': 'Dự án SafeFace là hệ thống quản lý và giám sát tự động sử dụng camera giám sát và pipeline xử lý sử dụng mô hình RetinaFace và ArcFace để phát hiện và nhận dạng khuôn mặt con người.',
+    'project.safeface.longDescription': 'Xây dựng hệ thống quản lý tác vụ toàn diện sử dụng machine learning để phân tích patterns làm việc và đề xuất ưu tiên tác vụ tối ưu. Tính năng bao gồm thông báo thông minh, theo dõi năng suất, công cụ cộng tác nhóm và dashboard phân tích chi tiết.',
+    'project.safeface.category': 'Website AI',
+    
+    'project.football.title': 'Website nhận dạng cầu thủ bóng đá',
+    'project.football.description': 'Dự án bao gồm xây dựng mô hình CNN và huấn luyện trên dữ liệu tự thu thập. Website cho phép người dùng nhận dạng các cầu thủ bóng đá nổi tiếng Premier League Anh thông qua hình ảnh khuôn mặt được tải lên.',
+    'project.football.longDescription': 'Phát triển nền tảng toàn diện tận dụng machine learning và kỹ thuật computer vision để nhận dạng cầu thủ bóng đá trong video trực tiếp. Hệ thống cung cấp phân tích và thông tin chi tiết về hiệu suất và chiến thuật cầu thủ.',
+    'project.football.category': 'Website AI',
+    
+    'project.hrm.title': 'Hệ Thống HRM Winform',
+    'project.hrm.description': 'Dự án giúp người dùng quản lý nguồn nhân lực dễ dàng hơn và được xây dựng dưới dạng ứng dụng Windows.',
+    'project.hrm.longDescription': 'Tạo nền tảng phân tích toàn diện xử lý tập dữ liệu lớn và cung cấp visualization tương tác, báo cáo tự động và phân tích dự đoán sử dụng thuật toán machine learning. Được thiết kế cho business intelligence và ra quyết định dựa trên dữ liệu.',
+    'project.hrm.category': 'Hệ Thống',
+    
+    'project.lung.title': 'Phân loại bệnh phổi từ hình ảnh X-quang',
+    'project.lung.description': 'Mô hình AI phân loại bệnh phổi từ hình ảnh X-quang sử dụng kiến trúc CNN với dữ liệu được tiền xử lý tốt.',
+    'project.lung.longDescription': 'Phát triển mô hình deep learning sử dụng convolutional neural networks (CNN) để phân loại bệnh phổi từ hình ảnh X-quang. Hệ thống cung cấp dự đoán chính xác và thông tin chi tiết để hỗ trợ bác sĩ X-quang trong chẩn đoán tình trạng phổi.',
+    'project.lung.category': 'Mô Hình AI',
+    
+    'project.portfolio.title': 'Website Portfolio',
+    'project.portfolio.description': 'Website portfolio cá nhân trình bày các dự án và kỹ năng của tôi.',
+    'project.portfolio.longDescription': 'Website portfolio này được xây dựng bằng công nghệ web hiện đại và trình bày công việc, kỹ năng và kinh nghiệm của tôi một cách hấp dẫn về mặt thị giác.',
+    'project.portfolio.category': 'Frontend',
+
+    // Projects Page
+    'projects.title': 'Dự Án',
+    'projects.subtitle': 'Bộ sưu tập các dự án thể hiện kỹ năng và đam mê phát triển của tôi',
+    'projects.filterAll': 'Tất Cả',
+    'projects.liveDemo': '🚀 Demo Trực Tiếp',
+    'projects.code': '💻 Mã Nguồn',
+    'projects.featured': '⭐ Nổi Bật',
+    'projects.ctaTitle': 'Quan Tâm Đến Việc Hợp Tác?',
+    'projects.ctaSubtitle': 'Tôi luôn hào hức làm việc trên các dự án mới và hợp tác với những người tuyệt vời.',
+    'projects.ctaButton': 'Hãy Thảo Luận Dự Án Của Bạn',
+    'projects.viewDetails': 'Xem Chi Tiết',
+    'projects.modal.description': 'Mô Tả',
+    'projects.modal.technologies': 'Công Nghệ Sử Dụng',
+    'projects.modal.category': 'Danh Mục',
+    'projects.modal.status': 'Trạng Thái',
+    'projects.modal.completed': 'Hoàn Thành',
+    'projects.modal.features': 'Tính Năng Chính',
+    'projects.modal.gallery': 'Thư Viện Ảnh',
   },
 };
 
